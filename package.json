@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bootstrap": "^3.3.37",
+    "@types/react": "^16.0.22",
+    "@types/react-dom": "^16.0.3",
+    "D": "^1.0.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1"
+  },
+  "description": "",
+  "devDependencies": {
+    "bootstrap-css": "^4.0.0-alpha.5"
+  }
+}
