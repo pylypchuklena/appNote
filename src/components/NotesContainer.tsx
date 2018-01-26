@@ -2,7 +2,7 @@ import * as React from "react";
 // import * from "./node_modules/bootstrap-css";
 import { ListNotes } from './ListNotes';
 import { NoteContent } from './NoteContent'; 
-import {NoteModel  } from "../models/NoteModel";
+import {NoteModel  } from "../types/NoteModel";
 
 export interface INoteContainer {
     list: Array<NoteModel>;

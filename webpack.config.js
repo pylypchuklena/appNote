@@ -20,15 +20,15 @@ module.exports = {
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             //{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
-        ],
-        loader: [{
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-              presets : ['es2015', 'react']
-            }
-        }]
+        ]
+        // loader: [{
+        //     test: /\.jsx?$/,
+        //     exclude: /node_modules/,
+        //     loader: 'babel',
+        //     query: {
+        //       presets : ['es2015', 'react']
+        //     }
+        // }]
       },
     watch: true,
 

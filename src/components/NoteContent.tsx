@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { NoteModel } from '../models/NoteModel';
+import { NoteModel } from '../types/NoteModel';
 
 export class NoteContent extends React.Component<{selectedItem:NoteModel},{}>{
     constructor(props:{selectedItem:NoteModel}){

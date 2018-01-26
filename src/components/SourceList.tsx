@@ -1,6 +1,6 @@
 import * as React from "react"
 import { NotesContainer } from './NotesContainer'; 
-import { NoteModel } from '../models/NoteModel';
+import { NoteModel } from '../types/NoteModel';
 
 const Notes: Array<NoteModel> = [
     {

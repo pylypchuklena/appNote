@@ -7,16 +7,15 @@ import { SourceList } from './components/SourceList';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import { NoteModel } from './types/NoteModel';
+import { NoteModel, TestState } from './types/NoteModel';
 import {StoreState} from './types/index';
-import {enthusiasm} from './reducers/index';
+import { noteReduser} from './reducers/index';
 import Hello from './containers/Hello';
 
 // import '../index.css';
 
-const store = createStore<StoreState>(enthusiasm,{
-    enthusiasmLevel: 2,
-    languageName: 'TypeScript'
+const store = createStore<TestState>(noteReduser,{
+    index: 2
 })
 
 

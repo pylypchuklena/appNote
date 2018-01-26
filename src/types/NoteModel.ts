@@ -10,3 +10,8 @@ export class NoteComment{
     content:string;
     createData:Date;
 }
+
+export class TestState
+{
+    index:number;
+}

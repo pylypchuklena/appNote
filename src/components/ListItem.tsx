@@ -1,5 +1,5 @@
 import * as React from "react";
-import {NoteModel, NoteComment} from '../models/NoteModel';
+import {NoteModel, NoteComment} from '../types/NoteModel';
 
 export class ListItem extends React.Component<{item:NoteModel},{}>{
     /**
