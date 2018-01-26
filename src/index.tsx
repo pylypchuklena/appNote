@@ -2,27 +2,29 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
 
-import { NoteModel } from './models/NoteModel';
 import { OptionPanel } from './components/OptionPanel';
 import { SourceList } from './components/SourceList';
 
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import { NoteModel } from './types/NoteModel';
+import {StoreState} from './types/index';
+import {enthusiasm} from './reducers/index';
+import Hello from './containers/Hello';
 
+// import '../index.css';
 
+const store = createStore<StoreState>(enthusiasm,{
+    enthusiasmLevel: 2,
+    languageName: 'TypeScript'
+})
 
-class App extends React.Component<{},{}>{
-    render(){
-        return (
-            <div>
-                {/* <OptionPanel/>
-                <SourceList/> */}
-            </div>
-        )
-    }
-}
 
 ReactDom.render(
-    <App/>,
-    document.getElementById("app")
+    <Provider store={store}>
+        <Hello/>
+    </Provider>,
+    document.getElementById("app") as HTMLElement
 );
 
 
