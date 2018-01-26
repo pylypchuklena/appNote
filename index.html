@@ -3,9 +3,156 @@
     <head>
         <meta charset="UTF-8" />
         <title>Hello React!</title>
+        <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="./index.css">
+
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app">
+            
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar  bg-gradient navbar-expand-md navbar-light bg-faded">
+                        <div class=" navbar-collapse">
+                          <ul class="navbar-nav">
+                            <li class="nav-item ">
+                              <a class="nav-link" href="#">Add Note <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Remove Note</a>
+                            </li>
+                          </ul>
+                    </div>
+                </nav>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-2 no-pdng-r">
+                    <div class="nav-wrap bg-gray">
+                        <ul class="nav flex-column ">
+                            <li class="nav-item nav-item--btn active"><a class="nav-link" href="#">LS</a></li>
+                            <li class="nav-item nav-item--btn"><a class="nav-link" href="#">FB</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-3 no-pdng">
+                    <ul class="notes-list">
+                        <li class="notes-list__item flex-column active">
+                                <div class="notes-list__item__header">
+                                    <span class="comment__author">Helen Pylyp</span>
+                                </div>
+                                <div class="notes-list__item__footer flex-row">
+                                    <span class="comment__date comment__date--list">11.01.2018</span>
+                                    <span class="comment__content comment__content--list ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit eos asperiores perferendis doloribus, et cumque quisquam numquam earum officia quod? Quis id inventore iste molestiae quia sint odit nemo recusandae!</span>
+                                </div>
+                            </li>
+                        <li class="notes-list__item flex-column">
+                                <div class="notes-list__item__header">
+                                    <span class="comment__author">Helen Pylyp</span>
+                                </div>
+                                <div class="notes-list__item__footer flex-row">
+                                    <span class="comment__date comment__date--list">11.01.2018</span>
+                                    <span class="comment__content comment__content--list ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit eos asperiores perferendis doloribus, et cumque quisquam numquam earum officia quod? Quis id inventore iste molestiae quia sint odit nemo recusandae!</span>
+                                </div>
+                            </li>
+                        <li class="notes-list__item flex-column">
+                                <div class="notes-list__item__header">
+                                    <span class="comment__author">Helen Pylyp</span>
+                                </div>
+                                <div class="notes-list__item__footer flex-row">
+                                    <span class="comment__date comment__date--list">11.01.2018</span>
+                                    <span class="comment__content comment__content--list ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit eos asperiores perferendis doloribus, et cumque quisquam numquam earum officia quod? Quis id inventore iste molestiae quia sint odit nemo recusandae!</span>
+                                </div>
+                            </li>
+                        <li class="notes-list__item flex-column">
+                                <div class="notes-list__item__header">
+                                    <span class="comment__author">Helen Pylyp</span>
+                                </div>
+                                <div class="notes-list__item__footer flex-row">
+                                    <span class="comment__date comment__date--list">11.01.2018</span>
+                                    <span class="comment__content comment__content--list ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit eos asperiores perferendis doloribus, et cumque quisquam numquam earum officia quod? Quis id inventore iste molestiae quia sint odit nemo recusandae!</span>
+                                </div>
+                            </li>
+                        <li class="notes-list__item flex-column">
+                                <div class="notes-list__item__header">
+                                    <span class="comment__author">Helen Pylyp</span>
+                                </div>
+                                <div class="notes-list__item__footer flex-row">
+                                    <span class="comment__date comment__date--list">11.01.2018</span>
+                                    <span class="comment__content comment__content--list ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit eos asperiores perferendis doloribus, et cumque quisquam numquam earum officia quod? Quis id inventore iste molestiae quia sint odit nemo recusandae!</span>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                </div>
+                <div class="col-7 no-pdng-l">
+                    <div class="note--container">
+                        <div class="note">
+                            <div class="note__header">
+                                <div contentEditable="true" class="note__title">Note title</div>
+                                <span class="note__date" >21.01.2018</span>
+                            </div>
+                            <div contentEditable="true" class="note__content">content Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut necessitatibus minima, harum nostrum odit numquam repudiandae ducimus ut dolorum consequatur sunt officia voluptates porro rerum amet ab? Pariatur, vitae unde?</div>
+                            <div class="form-group note__addFile">
+                                <label for="noteFile">
+                                    <span class="btn btn-primary">Add file </span> 
+                                </label>
+                                <input type="file" id="noteFile">
+                            </div>
+                        </div>
+                        <div class="note__comments comments">
+                            <div class="comments__panel">
+                                <div class="comments__header">Comments : </div>
+                                <ul class="comment__list">
+                                    <li class="comment flex-row">
+                                        <div class="col-left flex-col">
+                                            <span class="comment__author">Helen Pylyp</span>
+                                            <span class="comment__date">11.01.2018</span>
+                                        </div>
+                                        <div class="col-rigth flex-grow">
+                                            <span class="comment__content">Comment lorem   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur ipsa in saepe nesciunt beatae aut, nemo adipisci dignissimos nam consequatur a aspernatur voluptate porro, mollitia quidem vitae harum dolorum rerum! content</span>
+                                        </div>
+                                    </li>
+                                    <li class="comment flex-row">
+                                            <div class="col-left flex-col">
+                                                <span class="comment__author">Helen Pylyp</span>
+                                                <span class="comment__date">11.01.2018</span>
+                                            </div>
+                                            <div class="col-rigth flex-grow">
+                                                <span class="comment__content">Comment content</span>
+                                            </div>
+                                        </li>
+                                </ul>
+                            </div>
+                            <div class="newComment newComent-wrap">
+                                <h2 class="newComment__header">Add comment</h2>
+                                <form action="" class="newComment__form">
+                                    <div class="newComment__inputs">
+                                        <div class="form-group">
+                                            <label for="newCommentName"  class="sr-only">Author:</label>
+                                            <input required id="newCommentName" type="text" placeholder="Helen Pylyp" class="form-control newComment__input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newCommentContent" class="sr-only">Content:</label>
+                                            <textarea required id="newCommentContent" type="text" placeholder="Your comment" class="form-control newComment__input" rows="3"></textarea>
+                                        </div>
+                                       
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-primary  mr-sm-2">Add comment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
 
         <!-- Dependencies -->
         <script src="./node_modules/react/umd/react.development.js"></script>
