@@ -8,8 +8,7 @@ import ListNotes from './components/ListNotes';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import { NoteModel, TestState, AppState , SourceTypes} from './types/NoteModel';
-import {StoreState} from './types/index';
+import { NoteModel, AppState , SourceTypes} from './types/NoteModel';
 import { noteReduser} from './reducers/index';
 import Hello from './containers/Hello';
 import NotesContainer from './components/NotesContainer';

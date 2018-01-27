@@ -1,7 +1,6 @@
 import * as React from "react";
-// import * from "./node_modules/bootstrap-css";
 
-function OptionPanel(){
+export function OptionPanel(){
     return(
         <div className="row">
             <div className="col-12">

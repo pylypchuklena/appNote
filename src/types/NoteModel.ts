@@ -16,11 +16,6 @@ export class NoteComment{
     createData:Date;
 }
 
-export class TestState
-{
-    index:number;
-}
-
 export class AppState{
     storageType:SourceTypes;
     selectedNote:NoteModel;

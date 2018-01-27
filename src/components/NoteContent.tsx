@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { NoteModel } from '../types/NoteModel';
 
-function NoteContent(){
+export function NoteContent(){
     return(
         <div className="note">
             <div className="note__header">

@@ -1,5 +1,4 @@
 import * as React from "react"
-import  NotesContainer  from './NotesContainer'; 
 import { NoteModel, SourceTypes } from '../types/NoteModel';
 
 export interface Props {
@@ -7,7 +6,7 @@ export interface Props {
     onChange?: () => void;
   }
 
-function SourceList(){
+export function SourceList(){
     return(
         <div className="nav-wrap bg-gray">
             <ul className="nav flex-column ">

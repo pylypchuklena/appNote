@@ -1,6 +1,4 @@
 import * as React from "react";
-// import * from "./node_modules/bootstrap-css";
-import  ListNotes  from './ListNotes';
 import  NoteContent  from './NoteContent'; 
 import NoteCommentsPanel from './NoteCommentsPanel';
 import {NoteModel  } from "../types/NoteModel";
@@ -10,7 +8,7 @@ export interface INoteContainer {
     list: Array<NoteModel>;
 }
 
-function NotesContainer(){
+export function NotesContainer(){
     return(
         <div className="note--container">
             <NoteContent/>
