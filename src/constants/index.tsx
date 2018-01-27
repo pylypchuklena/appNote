@@ -6,4 +6,6 @@ export const CHANGE_SOURCE = 'CHANGE_SOURCE';
 export const ADD_NOTE="ADD_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 
+export const CHANGE_SELECTED_NOTE="CHANGE_SELECTED_NOTE";
+
 

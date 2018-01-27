@@ -3,8 +3,7 @@ import { AppState, SourceTypes, NoteModel } from '../types/NoteModel';
 import * as constants from '../constants';
 
 
-function changeSource(state:AppState):AppState
-{
+function changeSource(state:AppState):AppState{
     var storageValue = localStorage.getItem("storage");
 
     switch (storageValue) {
@@ -26,6 +25,8 @@ function changeSource(state:AppState):AppState
 
 function addNote(state:AppState):AppState{
     var note = newNote();
+    var id = state.noteList.length>0 ? state.noteList[state.noteList.length-1].id : 0;
+    note.id = id+1;
     return {...state, 
         noteList: state.noteList.concat([note]),
         selectedNote : note
@@ -52,6 +53,11 @@ function newNote():NoteModel{
     return note;
 }
 
+function changeSelectedNote(state:AppState, id:number):AppState{
+    var note = state.noteList.filter((item)=>{item.id==id})[0];
+return {...state, selectedNote:note};
+}
+
 export function noteReduser(state: AppState, action: NoteAction): AppState {
     console.log(action.type);
     switch (action.type) {
@@ -64,8 +70,15 @@ export function noteReduser(state: AppState, action: NoteAction): AppState {
             return newState;
         }
         case constants.DELETE_NOTE:
+        {
             var newState = deleteNote(state);
             console.log(newState);
+            return newState;
+        }
+        case constants.CHANGE_SELECTED_NOTE:
+        {
+            return changeSelectedNote(state,action.value as number );
+        }
         default:
             return state;
     }

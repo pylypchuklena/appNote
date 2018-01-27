@@ -1,14 +1,22 @@
 import * as React from "react";
 import  ListNotesItem  from './ListNotesItem';
 import {INoteContainer} from './NotesContainer';
+import { NoteModel } from "../types/NoteModel";
 
-//add interface here for props. it whould have list of items. See ListNotesContainer.
-//Then each ListNotesItem should call a method wher it was clicked like a button
+export interface IListProps{
+    notesList:NoteModel[];
+    selectedNote:NoteModel;
+    onSelectionChanged: (id:number)=>void;
+}
 
-export function ListNotes(){
+export function ListNotes({notesList,selectedNote,onSelectionChanged}:IListProps){
+console.log(notesList);
+console.log("ksdjnfa");
+    const listItems = notesList.map((item) =>
+    <ListNotesItem key={item.id.toString()} />);
     return(
         <ul className="notes-list">
-            <ListNotesItem/>
+           {listItems}
         </ul>
     );
 }

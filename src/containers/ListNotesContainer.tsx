@@ -6,15 +6,16 @@ import { ListNotes } from '../components/ListNotes';
 
 
 export function mapStateToProps(state:AppState){
+
     return{
-        notes:state.noteList,
+      notesList:state.noteList,
         selectedNote:state.selectedNote
     }
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.NoteAction>) {
   return {
-    onSelectionChanged: (id:number) => dispatch({type:constants.ADD_NOTE,value:id}),
+    onSelectionChanged: (id:number) => dispatch({type:constants.CHANGE_SELECTED_NOTE,value:id}),
   };
 }
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Hello from '../containers/Hello';
 import OptionPanel from './OptionPanel';
 import SourceList from './SourceList';
-import ListNotes from './ListNotes';
+import ListNotesContainer from '../containers/ListNotesContainer';
 import NotesContainer from './NotesContainer';
 import OptionPanelContainer from '../containers/OptionPanelContainer';
 
@@ -16,7 +16,7 @@ function AppContainer() {
                     <SourceList/>
                 </div>
                 <div className="col-3 no-pdng">
-                    <ListNotes/>
+                    <ListNotesContainer/>
                 </div>
                 <div className="col-7 no-pdng-l">
                     <NotesContainer/>

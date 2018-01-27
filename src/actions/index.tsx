@@ -7,7 +7,7 @@ export type NoteAction = INoteAction;
 
 export interface INoteAction{
     type:string;
-    value:object
+    value:any
 }
 
 export class ChangeSource {
