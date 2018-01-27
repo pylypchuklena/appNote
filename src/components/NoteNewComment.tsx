@@ -1,7 +1,7 @@
 import * as React from "react";
 import {NoteModel, NoteComment} from '../types/NoteModel';
 
-function NoteNewComment(){
+export function NoteNewComment(){
     return(
         <div className="newComment newComent-wrap">
             <h2 className="newComment__header">Add comment</h2>

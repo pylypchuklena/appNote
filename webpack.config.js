@@ -41,11 +41,3 @@ module.exports = {
         "react-dom": "ReactDOM"
     },
 };
-
-var l1 = {x:0,y:0}
-var l2 = {x:0,y:10}
-var p = {x:0,y:5}
-
-var pointFunc = function(l1,l2,p){
- return ((p.x-l1.x)(l2.y-l1.y) - (p.y-l1.y)(l2.x-l1.x) == 0);
-}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {NoteModel, NoteComment} from '../types/NoteModel';
 
-function NoteCommentsItem(){
+export function NoteCommentsItem(){
     return(
         <li className="comment flex-row">
             <div className="col-left flex-col">
