@@ -1,29 +1,24 @@
 import * as React from "react";
 // import * from "./node_modules/bootstrap-css";
-import { ListNotes } from './ListNotes';
-import { NoteContent } from './NoteContent'; 
+import  ListNotes  from './ListNotes';
+import  NoteContent  from './NoteContent'; 
+import NoteCommentsPanel from './NoteCommentsPanel';
 import {NoteModel  } from "../types/NoteModel";
+import NoteNewComment from "./NoteNewComment";
 
 export interface INoteContainer {
     list: Array<NoteModel>;
 }
 
-export class NotesContainer extends React.Component<INoteContainer,{}>{
-    /**
-     *
-     */
-    constructor(props:INoteContainer) {
-        super(props);
-        console.log(props);
-    }
-    
-    render(){
-        var list = this.props.list;
-        return(
-            <div className="notesContainer">
-                <ListNotes list ={list}/>
-                <NoteContent selectedItem={list[0]} />
+function NotesContainer(){
+    return(
+        <div className="note--container">
+            <NoteContent/>
+            <div className="note__comments comments">
+                <NoteCommentsPanel/>
+                <NoteNewComment />
             </div>
-        )
-    }
+        </div>
+    )
 }
+export default NotesContainer;

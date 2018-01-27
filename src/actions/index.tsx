@@ -32,7 +32,7 @@ export interface INoteAction{
     value:object
 }
 
-export interface ChangeSource{
+export class ChangeSource {
     type:string;
     value:SourceTypes;
 }

@@ -133,6 +133,9 @@ aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
 .nav-item--btn.active{
     background-color: rgb(148, 144, 144);
 }
+.nav-item--btn:hover{
+    background-color: rgb(182, 178, 178);  
+}
 .nav-item--btn a{
     color: #000;
 }

@@ -1,31 +1,24 @@
 import * as React from 'react'
 import { NoteModel } from '../types/NoteModel';
 
-export class NoteContent extends React.Component<{selectedItem:NoteModel},{}>{
-    constructor(props:{selectedItem:NoteModel}){
-        super(props)
-    }
-    render(){
-        var selectedItem = this.props.selectedItem;
-        return (
-            <div>
-                <h2>Note content</h2>
-                <div>
-                    <label htmlFor="noteTitle">Title</label>
-                    <input type="text" id="noteTitle" value={selectedItem.name}/>
-                </div>
-                <div>
-                    <label htmlFor="noteContent">Content</label>
-                    <input type="text" id="noteContent"  value={selectedItem.content}/>
-                </div>
-                <div>
-                    <label htmlFor="noteTitle">File</label>
-                    <input type="file" id="noteFile"/>
-                </div>
+function NoteContent(){
+    return(
+        <div className="note">
+            <div className="note__header">
+                <div  suppressContentEditableWarning={true} contentEditable={true} className="note__title">Note title</div>
+                <span className="note__date" >21.01.2018</span>
             </div>
-        )
-    }
+            <div suppressContentEditableWarning={true} contentEditable={true}  className="note__content">
+                content Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut necessitatibus minima, harum nostrum odit numquam repudiandae ducimus ut dolorum consequatur sunt officia voluptates porro rerum amet ab? Pariatur, vitae unde?
+            </div>
+            <div className="form-group note__addFile">
+                <label htmlFor="noteFile">
+                    <span className="btn btn-primary">Add file </span> 
+                </label>
+                <input type="file" id="noteFile" />
+            </div>
+        </div>
+    )
 }
-
-
  
+export default NoteContent;

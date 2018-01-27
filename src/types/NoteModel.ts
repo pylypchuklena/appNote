@@ -1,6 +1,6 @@
 export enum SourceTypes{
-    LOCALSTORAGE,
-    FIREBASE
+    LOCALSTORAGE=0,
+    FIREBASE=1
 }
 
 export class NoteModel{

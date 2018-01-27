@@ -7,6 +7,6 @@ export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
 
 //source
 export const CHANGE_SOURCE = 'CHANGE_SOURCE';
-export type CHANGE_SOURCE = typeof CHANGE_SOURCE;
+//export type CHANGE_SOURCE = typeof CHANGE_SOURCE;
 
 
