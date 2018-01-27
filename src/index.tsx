@@ -7,17 +7,23 @@ import { SourceList } from './components/SourceList';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import { NoteModel, TestState } from './types/NoteModel';
+import { NoteModel, TestState, AppState , SourceTypes} from './types/NoteModel';
 import {StoreState} from './types/index';
 import { noteReduser} from './reducers/index';
 import Hello from './containers/Hello';
 
 // import '../index.css';
 
-const store = createStore<TestState>(noteReduser,{
-    index: 2
-})
+function defaultState():AppState {
+    console.log("default");
+    return {
+        noteList:new Array<NoteModel>(),
+        storageType:SourceTypes.LOCALSTORAGE,
+        selectedNote:null
+    };
+}
 
+const store = createStore<AppState>(noteReduser,defaultState())
 
 ReactDom.render(
     <Provider store={store}>

@@ -1,6 +1,7 @@
-import { EnthusiasmAction } from '../actions';
-import { TestState } from '../types/NoteModel';
+import { EnthusiasmAction, NoteAction } from '../actions';
+import { AppState, SourceTypes } from '../types/NoteModel';
 import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../constants/index';
+import * as constants from '../constants';
 
 // export function enthusiasm(state: StoreState, action: EnthusiasmAction): StoreState {
 //   switch (action.type) {
@@ -15,16 +16,37 @@ import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../constants/index';
 
 
 
-export function noteReduser(state:TestState,action:{type:string,value:number}):TestState{
-switch(action.type)
-{
-    case "CHANGE":
-    return {...state, index:action.value};
-    default:
-    return state;
+export function noteReduser(state: AppState, action: NoteAction): AppState {
+    switch (action.type) {
+
+        // case "CHANGE":
+        //     return {...state, index:action.value};
+        case constants.CHANGE_SOURCE:
+            {
+                var storageValue = localStorage.getItem("storage");
+                console.log("from storage", storageValue);
+
+                switch (storageValue) {
+                    case SourceTypes.FIREBASE.toString():
+                        {
+                            localStorage.setItem("storage", SourceTypes.LOCALSTORAGE.toString())
+                            return { ...state, storageType: SourceTypes.LOCALSTORAGE };
+                        }
+                    case SourceTypes.LOCALSTORAGE.toString():
+                        {
+                            localStorage.setItem("storage", SourceTypes.FIREBASE.toString())
+                            return { ...state, storageType: SourceTypes.FIREBASE };
+                        }
+                    default:
+                        localStorage.setItem("storage", SourceTypes.LOCALSTORAGE.toString())
+                        return { ...state, storageType: SourceTypes.LOCALSTORAGE };
+                }
+            }
+
+        default:
+            return state;
+    }
 }
-}
 
 
 
-    

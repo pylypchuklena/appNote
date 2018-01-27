@@ -1,3 +1,8 @@
+export enum SourceTypes{
+    LOCALSTORAGE,
+    FIREBASE
+}
+
 export class NoteModel{
     id: number;
     name:string;
@@ -14,4 +19,10 @@ export class NoteComment{
 export class TestState
 {
     index:number;
+}
+
+export class AppState{
+    storageType:SourceTypes;
+    selectedNote:NoteModel;
+    noteList:Array<NoteModel>;
 }

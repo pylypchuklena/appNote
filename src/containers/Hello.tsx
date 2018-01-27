@@ -1,7 +1,8 @@
 import Hello from '../components/Hello';
 import * as actions from '../actions/';
-import { TestState } from '../types/NoteModel';
+import { TestState, AppState } from '../types/NoteModel';
 import { connect, Dispatch } from 'react-redux';
+import * as constants from '../constants';
 
 // export function mapStateToProps({ enthusiasmLevel, languageName }: StoreState) {
 //   return {
@@ -20,16 +21,15 @@ import { connect, Dispatch } from 'react-redux';
 
 
 
-export function mapStateToProps(state:TestState){
+export function mapStateToProps(state:AppState){
   return {
-    index:state.index
+    source:state.storageType
   };
 }
 
-var defValue = 10;
-export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>) {
+export function mapDispatchToProps(dispatch: Dispatch<actions.NoteAction>) {
   return {
-    onChange: () => dispatch({type:"CHANGE",value:++defValue})
+    onChange: () => dispatch({type:constants.CHANGE_SOURCE})
   };
 }
 
