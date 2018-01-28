@@ -5,10 +5,9 @@ import * as constants from '../constants';
 import OptionPanel from '../components/OptionPanel';
 
 
-export function mapDispatchToProps(dispatch: Dispatch<actions.NoteAction>) {
+export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
-    onAddNote: () => dispatch({type:constants.ADD_NOTE}),
-    onDeleteNote:() => dispatch({type:constants.DELETE_NOTE})
+    onAddNote: () => dispatch(actions.addNote())
   };
 }
 

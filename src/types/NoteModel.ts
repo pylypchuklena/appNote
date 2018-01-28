@@ -8,6 +8,7 @@ export class NoteModel{
     name:string;
     content:string;
     date:Date;
+    isSelected:boolean;
     comments:Array<NoteComment>;
 }
 export class NoteComment{
@@ -18,6 +19,5 @@ export class NoteComment{
 
 export class AppState{
     storageType:SourceTypes;
-    selectedNote:NoteModel;
     noteList:Array<NoteModel>;
 }

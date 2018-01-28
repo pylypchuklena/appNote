@@ -9,6 +9,7 @@ export function NoteCommentsPanel(){
             <ul className="comment__list">
                 <NoteCommentsItem />
             </ul>
+            <NotesNew>
         </div>
     )
 }

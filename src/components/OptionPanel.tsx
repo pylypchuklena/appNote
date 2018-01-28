@@ -1,12 +1,11 @@
 import * as React from "react";
 
 interface Props {
-    onDeleteNote?:()=>void
-    onAddNote?: () => void;
+    onAddNote?: () => void
   }
   
 
-export function OptionPanel({onDeleteNote,onAddNote}:Props){
+export function OptionPanel({onAddNote}:Props){
     return(
         <div className="row">
             <div className="col-12">
@@ -15,9 +14,6 @@ export function OptionPanel({onDeleteNote,onAddNote}:Props){
                         <ul className="navbar-nav">
                         <li className="nav-item ">
                         <button  className="nav-link btn btn-link" onClick={onAddNote}>Add Note</button>
-                        </li>
-                        <li className="nav-item">
-                            <button className="nav-link btn btn-link" onClick={onDeleteNote}>Remove Note</button>
                         </li>
                         </ul>
                     </div>

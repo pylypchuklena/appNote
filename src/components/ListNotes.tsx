@@ -5,19 +5,18 @@ import { NoteModel } from "../types/NoteModel";
 
 export interface IListProps{
     notesList:NoteModel[];
-    selectedNote:NoteModel;
     onSelectionChanged: (id:number)=>void;
+    deleteNote:(id:number)=>void;
 }
 
-export function ListNotes({notesList,selectedNote,onSelectionChanged}:IListProps){
-console.log(notesList);
-console.log("ksdjnfa");
+export function ListNotes({notesList,onSelectionChanged,deleteNote}:IListProps){
     const listItems = notesList.map((item) =>
-    <ListNotesItem key={item.id.toString()} />);
+    <ListNotesItem key={item.id.toString()} item={item} onSelectionChanged={onSelectionChanged} deleteNote={deleteNote}/>);
     return(
         <ul className="notes-list">
            {listItems}
         </ul>
+      
     );
 }
 export default ListNotes;

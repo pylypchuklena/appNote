@@ -14,8 +14,7 @@ function defaultState():AppState {
     
     return {
         noteList:new Array<NoteModel>(),
-        storageType:SourceTypes.LOCALSTORAGE,
-        selectedNote:null
+        storageType:SourceTypes.LOCALSTORAGE
     };
 }
 

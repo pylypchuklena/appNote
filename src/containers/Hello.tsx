@@ -1,6 +1,6 @@
 import Hello from '../components/Hello';
 import * as actions from '../actions/';
-import { AppState } from '../types/NoteModel';
+import { AppState, SourceTypes } from '../types/NoteModel';
 import { connect, Dispatch } from 'react-redux';
 import * as constants from '../constants';
 
@@ -11,9 +11,9 @@ export function mapStateToProps(state:AppState){
   };
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<actions.NoteAction>) {
+export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
-    onChange: () => dispatch({type:constants.CHANGE_SOURCE})
+    onChange: (type:SourceTypes) => dispatch(actions.changeStore(type))
   };
 }
 

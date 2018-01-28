@@ -1,4 +1,4 @@
-import { NoteAction } from '../actions';
+import { INoteAction } from '../actions';
 import { AppState, SourceTypes, NoteModel } from '../types/NoteModel';
 import * as constants from '../constants';
 
@@ -25,21 +25,22 @@ function changeSource(state:AppState):AppState{
 
 function addNote(state:AppState):AppState{
     var note = newNote();
+    note.isSelected=true;
+
+    var unselectedNoteList = state.noteList.map(item=>{return {...item, isSelected:false} as NoteModel;})
+
+    //replace with guid 
     var id = state.noteList.length>0 ? state.noteList[state.noteList.length-1].id : 0;
     note.id = id+1;
+
     return {...state, 
-        noteList: state.noteList.concat([note]),
-        selectedNote : note
+        noteList: unselectedNoteList.concat([note]),
     };
 }
 
-function deleteNote(state:AppState):AppState{
-    var note = state.selectedNote;
-    var index = state.noteList.indexOf(note);
-    var list = state.noteList.slice(0,index).concat(state.noteList.slice(index+1));
+function deleteNote(state:AppState,id:number):AppState{
     return {...state, 
-        noteList: list,
-        selectedNote : state.noteList.length>0?state.noteList[0]:undefined
+        noteList: state.noteList.filter(item=>{return item.id!=id}),
     };
 }
 
@@ -50,35 +51,34 @@ function newNote():NoteModel{
     note.content='';
     note.date = new Date();
     note.name="";
+    note.isSelected=false;
     return note;
 }
 
 function changeSelectedNote(state:AppState, id:number):AppState{
-    var note = state.noteList.filter((item)=>{item.id==id})[0];
-return {...state, selectedNote:note};
+    return {...state, noteList: state.noteList.map(note=>{
+        if(note.id != id)
+        {
+            if (note.isSelected)
+                return {...note, isSelected:false} as NoteModel;
+            return note;
+        }
+        return {...note, isSelected:true} as  NoteModel;
+    })}
 }
 
-export function noteReduser(state: AppState, action: NoteAction): AppState {
-    console.log(action.type);
+export function noteReduser(state: AppState, action: INoteAction): AppState {
+    console.log(action);
     switch (action.type) {
         case constants.CHANGE_SOURCE:
             return changeSource(state);
         case constants.ADD_NOTE:
-        {
-            var newState = addNote(state);
-            console.log(newState);
-            return newState;
-        }
+            return addNote(state);
         case constants.DELETE_NOTE:
-        {
-            var newState = deleteNote(state);
-            console.log(newState);
-            return newState;
-        }
+            return deleteNote(state,action.value as number);
         case constants.CHANGE_SELECTED_NOTE:
-        {
             return changeSelectedNote(state,action.value as number );
-        }
+        
         default:
             return state;
     }
