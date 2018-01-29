@@ -3,7 +3,7 @@ import { AppState, SourceTypes, NoteModel } from '../types/NoteModel';
 import { connect, Dispatch } from 'react-redux';
 import * as constants from '../constants';
 import noteList from '../components/ListNotes'
-import { NotesComponent } from "../components/NotesComponent";
+import { NotesComponent, INewComment } from "../components/NotesComponent";
 
 
 export function mapStateToProps(state:AppState){
@@ -17,7 +17,9 @@ export function mapStateToProps(state:AppState){
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
-    updateNote: (item:NoteModel) => dispatch(actions.updateNote(item))
+    updateNote: (item:NoteModel) => dispatch(actions.updateNote(item)),
+    addComment:(payload:INewComment) => dispatch(actions.addComment(payload)),
+    onAddNote:()=>dispatch(actions.addNote())
   };
 }
 

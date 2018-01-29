@@ -1,6 +1,7 @@
 import * as constants from '../constants';
 import { SourceTypes, NoteModel } from '../types/NoteModel';
 import { INoteAction } from './index';
+import { INewComment } from '../components/NotesComponent';
 
 //source
 
@@ -36,10 +37,10 @@ export function deleteNote(id:number):INoteAction{
         value:id
     }
 }
-export function addComment():INoteAction{
+export function addComment(payload:INewComment):INoteAction{
     return{
         type:constants.ADD_COMMENT,
-        value:null
+        value:payload
     }
 }
 

@@ -11,7 +11,10 @@ export interface IListProps{
 
 export function ListNotes({notesList,onSelectionChanged,deleteNote}:IListProps){
     const listItems = notesList.map((item) =>
-    <ListNotesItem key={item.id.toString()} item={item} onSelectionChanged={onSelectionChanged} deleteNote={deleteNote}/>);
+    <ListNotesItem key={item.id.toString()}
+     item={item}
+     onSelectionChanged={onSelectionChanged} 
+     deleteNote={deleteNote}/>);
     return(
         <ul className="notes-list">
            {listItems}

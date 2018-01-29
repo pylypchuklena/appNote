@@ -1,6 +1,7 @@
 import { INoteAction } from '../actions';
 import { AppState, SourceTypes, NoteModel, NoteComment } from '../types/NoteModel';
 import * as constants from '../constants';
+import { INewComment } from '../components/NotesComponent';
 
 
 function changeSource(state:AppState):AppState{
@@ -50,7 +51,7 @@ function deleteNote(state:AppState,id:number):AppState{
 function newNote():NoteModel{
     var note = new NoteModel();
     note.id = 0;
-    note.comments = [];
+    note.comments = [{author:'lena', content:'lasdlfha sdf asd fa sdf   asdf  asd fa sdf a sdf a sdf a sdf as df as df as df as dg segt he tyh ry jr 6uj t7ik 68ik ', createData:new Date(), id:1},{author:'aaa', content:'learn', createData:new Date(), id:2}];
     note.content='';
     note.date = new Date();
     note.name="";
@@ -88,7 +89,24 @@ function updateNote (state:AppState,item: NoteModel):AppState{
             return note;     
     })}
 }
-
+// function changeNote(state:AppState, item:NoteModel):AppState{
+//     return{...state }
+// }
+var commentId:number =3;
+function addNewComment(state:AppState, item:INewComment):AppState{
+    item.comment.id=++commentId;
+    item.comment.createData=new Date();
+    console.log('id', item.comment.id)
+    console.log('data', item.comment.createData)
+    return{...state, noteList:state.noteList.map(note=>{
+        if(note.id == item.noteId)
+        {
+            return {...note, comments:note.comments.concat([item.comment])};
+        }
+            return note;
+        })
+    }
+}
 export function noteReduser(state: AppState, action: INoteAction): AppState {
     console.log(action);
     switch (action.type) {
@@ -100,14 +118,13 @@ export function noteReduser(state: AppState, action: INoteAction): AppState {
             return deleteNote(state,action.value as number);
         case constants.CHANGE_SELECTED_NOTE:
             return changeSelectedNote(state,action.value as number );
-            case constants.UPDATE_NOTE:
-            return updateNote(state,action.value as NoteModel)
-        // case constants.ADD_COMMENT:
-        //     return addNewComment(state);
+        case constants.UPDATE_NOTE:
+            return updateNote(state,action.value as NoteModel);
+        // case constants.CHANGE_NOTE_NAME:
+        //     return changeNote(state,action.value as NoteModel)
+        case constants.ADD_COMMENT:
+            return addNewComment(state, action.value as INewComment);
         default:
             return state;
     }
 }
-
-
-

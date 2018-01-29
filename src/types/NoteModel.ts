@@ -10,8 +10,11 @@ export class NoteModel{
     date:Date;
     isSelected:boolean;
     comments:Array<NoteComment>;
+    rows: number;
+    lineHeight: number;
 }
 export class NoteComment{
+    id:number;
     author:string;
     content:string;
     createData:Date;

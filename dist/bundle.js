@@ -67,12 +67,6 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = React;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -260,13 +254,19 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = React;
+
+/***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(33);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
@@ -378,7 +378,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 5 */
@@ -503,6 +503,58 @@ function isPlainObject(value) {
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var constants = __webpack_require__(22);
+function changeStore(sourceType) {
+    return {
+        type: constants.CHANGE_SOURCE,
+        value: sourceType
+    };
+}
+exports.changeStore = changeStore;
+function addNote() {
+    return {
+        type: constants.ADD_NOTE,
+        value: null
+    };
+}
+exports.addNote = addNote;
+function selectNote(id) {
+    return {
+        type: constants.CHANGE_SELECTED_NOTE,
+        value: id
+    };
+}
+exports.selectNote = selectNote;
+function deleteNote(id) {
+    return {
+        type: constants.DELETE_NOTE,
+        value: id
+    };
+}
+exports.deleteNote = deleteNote;
+function addComment(payload) {
+    return {
+        type: constants.ADD_COMMENT,
+        value: payload
+    };
+}
+exports.addComment = addComment;
+function updateNote(item) {
+    return {
+        type: constants.UPDATE_NOTE,
+        value: item
+    };
+}
+exports.updateNote = updateNote;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -532,10 +584,10 @@ if (process.env.NODE_ENV !== 'production') {
   module.exports = __webpack_require__(29)();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -601,16 +653,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subscriptionShape; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return storeShape; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
 
 
@@ -628,7 +680,7 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 });
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -637,10 +689,10 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(11);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -930,20 +982,20 @@ selectorFactory) {
     return __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default()(Connect, WrappedComponent);
   };
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(13);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(17);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "combineReducers", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bindActionCreators", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
@@ -967,10 +1019,10 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 }
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1229,7 +1281,7 @@ var ActionTypes = {
 }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1243,7 +1295,7 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1270,7 +1322,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1298,7 +1350,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1337,14 +1389,14 @@ function compose() {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = wrapMapToPropsConstant;
 /* unused harmony export getDependsOnOwnProps */
 /* harmony export (immutable) */ __webpack_exports__["b"] = wrapMapToPropsFunc;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(20);
 
 
 function wrapMapToPropsConstant(getConstant) {
@@ -1412,10 +1464,10 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
     return proxy;
   };
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1432,7 +1484,7 @@ function verifyPlainObject(value, displayName, methodName) {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1464,7 +1516,7 @@ exports.AppState = AppState;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1478,58 +1530,7 @@ exports.DELETE_NOTE = "DELETE_NOTE";
 exports.CHANGE_SELECTED_NOTE = "CHANGE_SELECTED_NOTE";
 exports.ADD_COMMENT = "ADD_COMMENT";
 exports.UPDATE_NOTE = "UPDATE_NOTE";
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var constants = __webpack_require__(21);
-function changeStore(sourceType) {
-    return {
-        type: constants.CHANGE_SOURCE,
-        value: sourceType
-    };
-}
-exports.changeStore = changeStore;
-function addNote() {
-    return {
-        type: constants.ADD_NOTE,
-        value: null
-    };
-}
-exports.addNote = addNote;
-function selectNote(id) {
-    return {
-        type: constants.CHANGE_SELECTED_NOTE,
-        value: id
-    };
-}
-exports.selectNote = selectNote;
-function deleteNote(id) {
-    return {
-        type: constants.DELETE_NOTE,
-        value: id
-    };
-}
-exports.deleteNote = deleteNote;
-function addComment() {
-    return {
-        type: constants.ADD_COMMENT,
-        value: null
-    };
-}
-exports.addComment = addComment;
-function updateNote(item) {
-    return {
-        type: constants.UPDATE_NOTE,
-        value: item
-    };
-}
-exports.updateNote = updateNote;
+exports.CHANGE_NOTE_NAME = 'CHANGE_NOTE_NAME';
 
 
 /***/ }),
@@ -1539,11 +1540,11 @@ exports.updateNote = updateNote;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 var ReactDom = __webpack_require__(24);
 var react_redux_1 = __webpack_require__(2);
-var redux_1 = __webpack_require__(12);
-var NoteModel_1 = __webpack_require__(20);
+var redux_1 = __webpack_require__(13);
+var NoteModel_1 = __webpack_require__(21);
 var index_1 = __webpack_require__(55);
 var AppContainer_1 = __webpack_require__(56);
 // import '../index.css';
@@ -1570,11 +1571,11 @@ module.exports = ReactDOM;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = createProvider;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_PropTypes__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_PropTypes__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(6);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1648,7 +1649,7 @@ function createProvider() {
 }
 
 /* harmony default export */ __webpack_exports__["b"] = (createProvider());
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 26 */
@@ -1666,7 +1667,7 @@ function createProvider() {
 
 var emptyFunction = __webpack_require__(3);
 var invariant = __webpack_require__(4);
-var warning = __webpack_require__(9);
+var warning = __webpack_require__(10);
 var assign = __webpack_require__(27);
 
 var ReactPropTypesSecret = __webpack_require__(5);
@@ -2198,7 +2199,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 27 */
@@ -2313,7 +2314,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(4);
-  var warning = __webpack_require__(9);
+  var warning = __webpack_require__(10);
   var ReactPropTypesSecret = __webpack_require__(5);
   var loggedTypeFailures = {};
 }
@@ -2362,7 +2363,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
 module.exports = checkPropTypes;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 29 */
@@ -2558,7 +2559,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 32 */
@@ -2665,7 +2666,7 @@ var Subscription = function () {
 
 "use strict";
 /* unused harmony export createConnect */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_connectAdvanced__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_connectAdvanced__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_shallowEqual__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapDispatchToProps__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapStateToProps__ = __webpack_require__(51);
@@ -2820,8 +2821,8 @@ function shallowEqual(objA, objB) {
 /* unused harmony export whenMapDispatchToPropsIsFunction */
 /* unused harmony export whenMapDispatchToPropsIsMissing */
 /* unused harmony export whenMapDispatchToPropsIsObject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(19);
 
 
 
@@ -2848,7 +2849,7 @@ function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(40);
 
@@ -2908,14 +2909,14 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 /* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(16)))
 
 /***/ }),
 /* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(15);
 
 
 /** Used for built-in method references. */
@@ -3106,7 +3107,7 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(46)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16), __webpack_require__(46)(module)))
 
 /***/ }),
 /* 46 */
@@ -3171,9 +3172,9 @@ function symbolObservablePonyfill(root) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(17);
 
 
 
@@ -3304,7 +3305,7 @@ function combineReducers(reducers) {
     return hasChanged ? nextState : state;
   };
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 49 */
@@ -3366,7 +3367,7 @@ function bindActionCreators(actionCreators, dispatch) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyMiddleware;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(18);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -3423,7 +3424,7 @@ function applyMiddleware() {
 "use strict";
 /* unused harmony export whenMapStateToPropsIsFunction */
 /* unused harmony export whenMapStateToPropsIsMissing */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__wrapMapToProps__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__wrapMapToProps__ = __webpack_require__(19);
 
 
 function whenMapStateToPropsIsFunction(mapStateToProps) {
@@ -3447,7 +3448,7 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 /* unused harmony export wrapMergePropsFunc */
 /* unused harmony export whenMergePropsIsFunction */
 /* unused harmony export whenMergePropsIsOmitted */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(20);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -3493,7 +3494,7 @@ function whenMergePropsIsOmitted(mergeProps) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = ([whenMergePropsIsFunction, whenMergePropsIsOmitted]);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 53 */
@@ -3606,7 +3607,7 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 
   return selectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, options);
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 54 */
@@ -3648,8 +3649,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var NoteModel_1 = __webpack_require__(20);
-var constants = __webpack_require__(21);
+var NoteModel_1 = __webpack_require__(21);
+var constants = __webpack_require__(22);
 function changeSource(state) {
     var storageValue = localStorage.getItem("storage");
     switch (storageValue) {
@@ -3686,7 +3687,7 @@ function deleteNote(state, id) {
 function newNote() {
     var note = new NoteModel_1.NoteModel();
     note.id = 0;
-    note.comments = [];
+    note.comments = [{ author: 'lena', content: 'lasdlfha sdf asd fa sdf   asdf  asd fa sdf a sdf a sdf a sdf as df as df as df as dg segt he tyh ry jr 6uj t7ik 68ik ', createData: new Date(), id: 1 }, { author: 'aaa', content: 'learn', createData: new Date(), id: 2 }];
     note.content = '';
     note.date = new Date();
     note.name = "";
@@ -3718,6 +3719,22 @@ function updateNote(state, item) {
             return note;
         }) });
 }
+// function changeNote(state:AppState, item:NoteModel):AppState{
+//     return{...state }
+// }
+var commentId = 3;
+function addNewComment(state, item) {
+    item.comment.id = ++commentId;
+    item.comment.createData = new Date();
+    console.log('id', item.comment.id);
+    console.log('data', item.comment.createData);
+    return __assign({}, state, { noteList: state.noteList.map(function (note) {
+            if (note.id == item.noteId) {
+                return __assign({}, note, { comments: note.comments.concat([item.comment]) });
+            }
+            return note;
+        }) });
+}
 function noteReduser(state, action) {
     console.log(action);
     switch (action.type) {
@@ -3731,8 +3748,10 @@ function noteReduser(state, action) {
             return changeSelectedNote(state, action.value);
         case constants.UPDATE_NOTE:
             return updateNote(state, action.value);
-        // case constants.ADD_COMMENT:
-        //     return addNewComment(state);
+        // case constants.CHANGE_NOTE_NAME:
+        //     return changeNote(state,action.value as NoteModel)
+        case constants.ADD_COMMENT:
+            return addNewComment(state, action.value);
         default:
             return state;
     }
@@ -3747,11 +3766,11 @@ exports.noteReduser = noteReduser;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 var SourceList_1 = __webpack_require__(57);
 var ListNotesContainer_1 = __webpack_require__(58);
 var NotesContainer_1 = __webpack_require__(61);
-var OptionPanelContainer_1 = __webpack_require__(67);
+var OptionPanelContainer_1 = __webpack_require__(66);
 function AppContainer() {
     return (React.createElement("div", { className: "container" },
         React.createElement(OptionPanelContainer_1.default, null),
@@ -3773,7 +3792,7 @@ exports.default = AppContainer;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 function SourceList() {
     return (React.createElement("div", { className: "nav-wrap bg-gray" },
         React.createElement("ul", { className: "nav flex-column " },
@@ -3793,7 +3812,7 @@ exports.default = SourceList;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var actions = __webpack_require__(22);
+var actions = __webpack_require__(8);
 var react_redux_1 = __webpack_require__(2);
 var ListNotes_1 = __webpack_require__(59);
 function mapStateToProps(state) {
@@ -3819,7 +3838,7 @@ exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Lis
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 var ListNotesItem_1 = __webpack_require__(60);
 function ListNotes(_a) {
     var notesList = _a.notesList, onSelectionChanged = _a.onSelectionChanged, deleteNote = _a.deleteNote;
@@ -3839,7 +3858,7 @@ exports.default = ListNotes;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 function ListNotesItem(_a) {
     var item = _a.item, onSelectionChanged = _a.onSelectionChanged, deleteNote = _a.deleteNote;
     return (React.createElement("li", { className: "notes-list__item flex-column " + (item.isSelected ? 'active' : ''), onClick: function () { onSelectionChanged(item.id); } },
@@ -3864,7 +3883,7 @@ exports.default = ListNotesItem;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var actions = __webpack_require__(22);
+var actions = __webpack_require__(8);
 var react_redux_1 = __webpack_require__(2);
 var NotesComponent_1 = __webpack_require__(62);
 function mapStateToProps(state) {
@@ -3877,7 +3896,9 @@ function mapStateToProps(state) {
 exports.mapStateToProps = mapStateToProps;
 function mapDispatchToProps(dispatch) {
     return {
-        updateNote: function (item) { return dispatch(actions.updateNote(item)); }
+        updateNote: function (item) { return dispatch(actions.updateNote(item)); },
+        addComment: function (payload) { return dispatch(actions.addComment(payload)); },
+        onAddNote: function () { return dispatch(actions.addNote()); }
     };
 }
 exports.mapDispatchToProps = mapDispatchToProps;
@@ -3891,15 +3912,23 @@ exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Not
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 var NoteContent_1 = __webpack_require__(63);
 var NoteCommentsPanel_1 = __webpack_require__(64);
 function NotesComponent(_a) {
-    var note = _a.note, updateNote = _a.updateNote;
-    return (React.createElement("div", { className: "note--container" },
-        React.createElement(NoteContent_1.default, { selectedItem: note, updateNote: updateNote }),
-        React.createElement("div", { className: "note__comments comments" },
-            React.createElement(NoteCommentsPanel_1.default, null))));
+    var note = _a.note, updateNote = _a.updateNote, addComment = _a.addComment, onAddNote = _a.onAddNote;
+    console.log("note", note);
+    if (note) {
+        return (React.createElement("div", { className: "note--container" },
+            React.createElement(NoteContent_1.default, { selectedItem: note, updateNote: updateNote }),
+            React.createElement("div", { className: "note__comments comments" },
+                React.createElement(NoteCommentsPanel_1.default, { commentList: note.comments, onAddComment: function (e) { addComment({ noteId: note.id, comment: e }); } }))));
+    }
+    else
+        return (React.createElement("div", { className: "note--container" },
+            " ",
+            React.createElement("div", null, "Create Your Notes"),
+            React.createElement("div", { className: "nav-link btn btn-link", onClick: function () { onAddNote(); } }, "Add Note")));
 }
 exports.NotesComponent = NotesComponent;
 exports.default = NotesComponent;
@@ -3912,26 +3941,30 @@ exports.default = NotesComponent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 function NoteContent(_a) {
     var selectedItem = _a.selectedItem, updateNote = _a.updateNote;
-    if (selectedItem === undefined) {
-        selectedItem = { content: '', id: 0, name: '', date: new Date(), isSelected: false, comments: [] };
+    function handleChange(e) {
+        selectedItem.content = e.currentTarget.innerText;
     }
-    function onNameChange() {
+    function handleChangeTitle(e) {
+        selectedItem.name = e.currentTarget.innerText;
     }
-    return (React.createElement("div", { className: "note" },
-        React.createElement("div", { className: "note__header" },
-            React.createElement("div", { className: "note__title" },
-                React.createElement("textarea", { placeholder: "Title" }, selectedItem.name)),
-            React.createElement("span", { className: "note__date" }, selectedItem.date.toUTCString()),
-            React.createElement("p", null, selectedItem.id)),
-        React.createElement("div", { suppressContentEditableWarning: true, contentEditable: true, className: "note__content" }, selectedItem.content),
-        React.createElement("div", { className: "form-group note__addFile" },
-            React.createElement("label", { htmlFor: "noteFile" },
-                React.createElement("span", { className: "btn btn-primary" }, "Add file ")),
-            React.createElement("input", { type: "file", id: "noteFile" })),
-        React.createElement("button", { onClick: function () { updateNote(selectedItem); } }, "Save")));
+    if (selectedItem) {
+        return (React.createElement("div", { className: "note" },
+            React.createElement("div", { className: "note__header" },
+                React.createElement("div", { suppressContentEditableWarning: true, contentEditable: true, className: "note__title", onKeyUp: function (e) { handleChangeTitle(e); } }, selectedItem.name),
+                React.createElement("span", { className: "note__date" }, selectedItem.date.toUTCString()),
+                React.createElement("p", null, selectedItem.id)),
+            React.createElement("div", { suppressContentEditableWarning: true, contentEditable: true, onKeyUp: function (e) { handleChange(e); }, className: "note__content" }, selectedItem.content),
+            React.createElement("div", { className: "form-group note__addFile" },
+                React.createElement("label", { htmlFor: "noteFile" },
+                    React.createElement("span", { className: "btn btn-primary" }, "Add file ")),
+                React.createElement("input", { type: "file", id: "noteFile" })),
+            React.createElement("button", { onClick: function () { updateNote(selectedItem); } }, "Save")));
+    }
+    else
+        return (React.createElement("div", null, "as"));
 }
 exports.NoteContent = NoteContent;
 exports.default = NoteContent;
@@ -3944,15 +3977,19 @@ exports.default = NoteContent;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 var NoteCommentsItem_1 = __webpack_require__(65);
-var NoteNewComment_1 = __webpack_require__(66);
-function NoteCommentsPanel() {
+var NoteNewComment_1 = __webpack_require__(68);
+function NoteCommentsPanel(_a) {
+    var commentList = _a.commentList, onAddComment = _a.onAddComment;
+    var commentItems = commentList.map(function (item) {
+        return React.createElement(NoteCommentsItem_1.default, { key: item.id, item: item });
+    });
+    console.log("comments", commentItems);
     return (React.createElement("div", { className: "comments__panel" },
         React.createElement("div", { className: "comments__header" }, "Comments : "),
-        React.createElement("ul", { className: "comment__list" },
-            React.createElement(NoteCommentsItem_1.default, null)),
-        React.createElement(NoteNewComment_1.default, null)));
+        React.createElement("ul", { className: "comment__list" }, commentItems),
+        React.createElement(NoteNewComment_1.default, { onAddComment: onAddComment })));
 }
 exports.NoteCommentsPanel = NoteCommentsPanel;
 exports.default = NoteCommentsPanel;
@@ -3965,14 +4002,15 @@ exports.default = NoteCommentsPanel;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-function NoteCommentsItem() {
+var React = __webpack_require__(1);
+function NoteCommentsItem(_a) {
+    var item = _a.item;
     return (React.createElement("li", { className: "comment flex-row" },
         React.createElement("div", { className: "col-left flex-col" },
-            React.createElement("span", { className: "comment__author" }, "Helen Pylyp"),
-            React.createElement("span", { className: "comment__date" }, "11.01.2018")),
+            React.createElement("span", { className: "comment__author" }, item.author),
+            React.createElement("span", { className: "comment__date" }, item.createData.toLocaleString())),
         React.createElement("div", { className: "col-rigth flex-grow" },
-            React.createElement("span", { className: "comment__content" }, "Comment lorem   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur ipsa in saepe nesciunt beatae aut, nemo adipisci dignissimos nam consequatur a aspernatur voluptate porro, mollitia quidem vitae harum dolorum rerum! content"))));
+            React.createElement("span", { className: "comment__content" }, item.content))));
 }
 exports.NoteCommentsItem = NoteCommentsItem;
 exports.default = NoteCommentsItem;
@@ -3985,35 +4023,9 @@ exports.default = NoteCommentsItem;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-function NoteNewComment(_a) {
-    var onAddComment = _a.onAddComment;
-    return (React.createElement("div", { className: "newComment newComent-wrap" },
-        React.createElement("h2", { className: "newComment__header" }, "Add comment"),
-        React.createElement("form", { action: "", className: "newComment__form" },
-            React.createElement("div", { className: "newComment__inputs" },
-                React.createElement("div", { className: "form-group" },
-                    React.createElement("label", { htmlFor: "newCommentName", className: "sr-only" }, "Author:"),
-                    React.createElement("input", { required: true, id: "newCommentName", type: "text", placeholder: "Helen Pylyp", className: "form-control newComment__input" })),
-                React.createElement("div", { className: "form-group" },
-                    React.createElement("label", { htmlFor: "newCommentContent", className: "sr-only" }, "Content:"),
-                    React.createElement("textarea", { required: true, id: "newCommentContent", placeholder: "Your comment", className: "form-control newComment__input" }))),
-            React.createElement("button", { type: "submit", onClick: onAddComment, className: "btn btn-sm btn-primary  mr-sm-2" }, "Add comment"))));
-}
-exports.NoteNewComment = NoteNewComment;
-exports.default = NoteNewComment;
-
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var actions = __webpack_require__(22);
+var actions = __webpack_require__(8);
 var react_redux_1 = __webpack_require__(2);
-var OptionPanel_1 = __webpack_require__(68);
+var OptionPanel_1 = __webpack_require__(67);
 function mapDispatchToProps(dispatch) {
     return {
         onAddNote: function () { return dispatch(actions.addNote()); }
@@ -4024,13 +4036,13 @@ exports.default = react_redux_1.connect((function () { }), mapDispatchToProps)(O
 
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
+var React = __webpack_require__(1);
 function OptionPanel(_a) {
     var onAddNote = _a.onAddNote;
     return (React.createElement("div", { className: "row" },
@@ -4043,6 +4055,40 @@ function OptionPanel(_a) {
 }
 exports.OptionPanel = OptionPanel;
 exports.default = OptionPanel;
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(1);
+var NoteModel_1 = __webpack_require__(21);
+function NoteNewComment(_a) {
+    var onAddComment = _a.onAddComment;
+    var comment = new NoteModel_1.NoteComment();
+    function handleAuthor(e) {
+        comment.author = e.currentTarget.value;
+    }
+    function handleContent(e) {
+        comment.content = e.currentTarget.value;
+    }
+    return (React.createElement("div", { className: "newComment newComent-wrap" },
+        React.createElement("h2", { className: "newComment__header" }, "Add comment"),
+        React.createElement("form", { action: "", className: "newComment__form" },
+            React.createElement("div", { className: "newComment__inputs" },
+                React.createElement("div", { className: "form-group" },
+                    React.createElement("label", { htmlFor: "newCommentName", className: "sr-only" }, "Author:"),
+                    React.createElement("input", { required: true, id: "newCommentName", onKeyUp: function (e) { handleAuthor(e); }, type: "text", placeholder: "Helen Pylyp", className: "form-control newComment__input" })),
+                React.createElement("div", { className: "form-group" },
+                    React.createElement("label", { htmlFor: "newCommentContent", className: "sr-only" }, "Content:"),
+                    React.createElement("textarea", { required: true, id: "newCommentContent", onKeyUp: function (e) { handleContent(e); }, placeholder: "Your comment", className: "form-control newComment__input" }))),
+            React.createElement("button", { type: "submit", onClick: function (e) { e.preventDefault(); onAddComment(comment); }, className: "btn btn-sm btn-primary  mr-sm-2" }, "Add comment"))));
+}
+exports.NoteNewComment = NoteNewComment;
+exports.default = NoteNewComment;
 
 
 /***/ })

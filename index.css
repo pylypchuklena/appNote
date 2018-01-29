@@ -61,7 +61,9 @@ aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
 }
 .note--container{
     border: 1px solid #cccccc;
+    border-top: none;
     border-radius: 2px;
+    min-height: calc(100vh - 55px);
 }
 .note__header{
     position: relative;

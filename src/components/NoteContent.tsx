@@ -7,27 +7,23 @@ export interface itemProps{
 }
 
 export function NoteContent({selectedItem,updateNote}:itemProps){
-    if(selectedItem===undefined){
-        selectedItem = {content:'',id:0, name:'', date: new Date(), isSelected:false, comments:[]};
+
+    function handleChange(e:any){
+        selectedItem.content = e.currentTarget.innerText;
+    }
+    function handleChangeTitle(e:any){
+        selectedItem.name = e.currentTarget.innerText;
     }
 
-    function onNameChange(){
-
-    }
-
+    if(selectedItem){
     return(
         <div className="note">
             <div className="note__header">
-            <div className="note__title">
-                <textarea placeholder="Title">{selectedItem.name}</textarea>
-            </div>
-            
-
-                {/* <div  suppressContentEditableWarning={true} contentEditable={true} className="note__title"></div> */}
+                <div  suppressContentEditableWarning={true} contentEditable={true} className="note__title" onKeyUp={(e)=>{handleChangeTitle(e)}}>{selectedItem.name}</div>
                 <span className="note__date" >{selectedItem.date.toUTCString()}</span>
                 <p>{selectedItem.id}</p>
             </div>
-            <div suppressContentEditableWarning={true} contentEditable={true}  className="note__content">
+            <div suppressContentEditableWarning={true} contentEditable={true} onKeyUp={(e)=>{handleChange(e)}} className="note__content">
                 {selectedItem.content}
             </div>
             <div className="form-group note__addFile">
@@ -38,7 +34,8 @@ export function NoteContent({selectedItem,updateNote}:itemProps){
             </div>
             <button onClick={()=>{updateNote(selectedItem)}}>Save</button>
         </div>
-    )
+    )}
+    else return (<div>as</div>)
 }
  
 export default NoteContent;
