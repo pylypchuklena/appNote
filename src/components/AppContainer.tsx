@@ -3,7 +3,7 @@ import Hello from '../containers/Hello';
 import OptionPanel from './OptionPanel';
 import SourceList from './SourceList';
 import ListNotesContainer from '../containers/ListNotesContainer';
-import NotesContainer from './NotesContainer';
+import NotesContainer from '../containers/NotesContainer';
 import OptionPanelContainer from '../containers/OptionPanelContainer';
 
 function AppContainer() {

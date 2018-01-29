@@ -1,6 +1,7 @@
 import * as React from "react";
 import {NoteModel, NoteComment} from '../types/NoteModel';
 import NoteCommentsItem from "./NoteCommentsItem";
+import NoteNewComment from "./NoteNewComment";
 
 export function NoteCommentsPanel(){
     return(
@@ -9,7 +10,7 @@ export function NoteCommentsPanel(){
             <ul className="comment__list">
                 <NoteCommentsItem />
             </ul>
-            <NotesNew>
+            <NoteNewComment/>
         </div>
     )
 }

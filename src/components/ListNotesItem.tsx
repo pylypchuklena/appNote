@@ -3,7 +3,7 @@ import {NoteModel, NoteComment} from '../types/NoteModel';
 
 interface itemProps{
     item:NoteModel;
-    onSelectionChanged :(id:number)=>void;
+    onSelectionChanged:(id:number)=>void;
     deleteNote:(id:number)=>void;
 }
 

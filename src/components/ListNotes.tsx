@@ -1,6 +1,6 @@
 import * as React from "react";
 import  ListNotesItem  from './ListNotesItem';
-import {INoteContainer} from './NotesContainer';
+import {INoteContainer} from './NotesComponent';
 import { NoteModel } from "../types/NoteModel";
 
 export interface IListProps{

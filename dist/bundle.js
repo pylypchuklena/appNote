@@ -1476,6 +1476,8 @@ exports.CHANGE_SOURCE = 'CHANGE_SOURCE';
 exports.ADD_NOTE = "ADD_NOTE";
 exports.DELETE_NOTE = "DELETE_NOTE";
 exports.CHANGE_SELECTED_NOTE = "CHANGE_SELECTED_NOTE";
+exports.ADD_COMMENT = "ADD_COMMENT";
+exports.UPDATE_NOTE = "UPDATE_NOTE";
 
 
 /***/ }),
@@ -1501,13 +1503,33 @@ function addNote() {
 }
 exports.addNote = addNote;
 function selectNote(id) {
-    return { type: constants.CHANGE_SELECTED_NOTE, value: id };
+    return {
+        type: constants.CHANGE_SELECTED_NOTE,
+        value: id
+    };
 }
 exports.selectNote = selectNote;
 function deleteNote(id) {
-    return { type: constants.DELETE_NOTE, value: id };
+    return {
+        type: constants.DELETE_NOTE,
+        value: id
+    };
 }
 exports.deleteNote = deleteNote;
+function addComment() {
+    return {
+        type: constants.ADD_COMMENT,
+        value: null
+    };
+}
+exports.addComment = addComment;
+function updateNote(item) {
+    return {
+        type: constants.UPDATE_NOTE,
+        value: item
+    };
+}
+exports.updateNote = updateNote;
 
 
 /***/ }),
@@ -3655,6 +3677,9 @@ function addNote(state) {
     note.id = id + 1;
     return __assign({}, state, { noteList: unselectedNoteList.concat([note]) });
 }
+// function addNewComment(state:AppState):AppState{
+//     var comment = newComment();
+// }
 function deleteNote(state, id) {
     return __assign({}, state, { noteList: state.noteList.filter(function (item) { return item.id != id; }) });
 }
@@ -3668,6 +3693,13 @@ function newNote() {
     note.isSelected = false;
     return note;
 }
+function newComment() {
+    var comment = new NoteModel_1.NoteComment();
+    comment.author = '';
+    comment.content = 'f';
+    comment.createData = new Date();
+    return comment;
+}
 function changeSelectedNote(state, id) {
     return __assign({}, state, { noteList: state.noteList.map(function (note) {
             if (note.id != id) {
@@ -3676,6 +3708,14 @@ function changeSelectedNote(state, id) {
                 return note;
             }
             return __assign({}, note, { isSelected: true });
+        }) });
+}
+function updateNote(state, item) {
+    return __assign({}, state, { noteList: state.noteList.map(function (note) {
+            if (note.id == item.id) {
+                return item;
+            }
+            return note;
         }) });
 }
 function noteReduser(state, action) {
@@ -3689,6 +3729,10 @@ function noteReduser(state, action) {
             return deleteNote(state, action.value);
         case constants.CHANGE_SELECTED_NOTE:
             return changeSelectedNote(state, action.value);
+        case constants.UPDATE_NOTE:
+            return updateNote(state, action.value);
+        // case constants.ADD_COMMENT:
+        //     return addNewComment(state);
         default:
             return state;
     }
@@ -3707,7 +3751,7 @@ var React = __webpack_require__(0);
 var SourceList_1 = __webpack_require__(57);
 var ListNotesContainer_1 = __webpack_require__(58);
 var NotesContainer_1 = __webpack_require__(61);
-var OptionPanelContainer_1 = __webpack_require__(66);
+var OptionPanelContainer_1 = __webpack_require__(67);
 function AppContainer() {
     return (React.createElement("div", { className: "container" },
         React.createElement(OptionPanelContainer_1.default, null),
@@ -3779,7 +3823,6 @@ var React = __webpack_require__(0);
 var ListNotesItem_1 = __webpack_require__(60);
 function ListNotes(_a) {
     var notesList = _a.notesList, onSelectionChanged = _a.onSelectionChanged, deleteNote = _a.deleteNote;
-    console.log(notesList);
     var listItems = notesList.map(function (item) {
         return React.createElement(ListNotesItem_1.default, { key: item.id.toString(), item: item, onSelectionChanged: onSelectionChanged, deleteNote: deleteNote });
     });
@@ -3821,19 +3864,24 @@ exports.default = ListNotesItem;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var NoteContent_1 = __webpack_require__(62);
-var NoteCommentsPanel_1 = __webpack_require__(63);
-var NoteNewComment_1 = __webpack_require__(65);
-function NotesContainer() {
-    return (React.createElement("div", { className: "note--container" },
-        React.createElement(NoteContent_1.default, null),
-        React.createElement("div", { className: "note__comments comments" },
-            React.createElement(NoteCommentsPanel_1.default, null),
-            React.createElement(NoteNewComment_1.default, null))));
+var actions = __webpack_require__(22);
+var react_redux_1 = __webpack_require__(2);
+var NotesComponent_1 = __webpack_require__(62);
+function mapStateToProps(state) {
+    var items = state.noteList.filter(function (item) { return item.isSelected === true; });
+    var item = items.length > 0 ? items[0] : undefined;
+    return {
+        note: item
+    };
 }
-exports.NotesContainer = NotesContainer;
-exports.default = NotesContainer;
+exports.mapStateToProps = mapStateToProps;
+function mapDispatchToProps(dispatch) {
+    return {
+        updateNote: function (item) { return dispatch(actions.updateNote(item)); }
+    };
+}
+exports.mapDispatchToProps = mapDispatchToProps;
+exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(NotesComponent_1.NotesComponent);
 
 
 /***/ }),
@@ -3844,19 +3892,17 @@ exports.default = NotesContainer;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-function NoteContent() {
-    return (React.createElement("div", { className: "note" },
-        React.createElement("div", { className: "note__header" },
-            React.createElement("div", { suppressContentEditableWarning: true, contentEditable: true, className: "note__title" }, "Note title"),
-            React.createElement("span", { className: "note__date" }, "21.01.2018")),
-        React.createElement("div", { suppressContentEditableWarning: true, contentEditable: true, className: "note__content" }, "content Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut necessitatibus minima, harum nostrum odit numquam repudiandae ducimus ut dolorum consequatur sunt officia voluptates porro rerum amet ab? Pariatur, vitae unde?"),
-        React.createElement("div", { className: "form-group note__addFile" },
-            React.createElement("label", { htmlFor: "noteFile" },
-                React.createElement("span", { className: "btn btn-primary" }, "Add file ")),
-            React.createElement("input", { type: "file", id: "noteFile" }))));
+var NoteContent_1 = __webpack_require__(63);
+var NoteCommentsPanel_1 = __webpack_require__(64);
+function NotesComponent(_a) {
+    var note = _a.note, updateNote = _a.updateNote;
+    return (React.createElement("div", { className: "note--container" },
+        React.createElement(NoteContent_1.default, { selectedItem: note, updateNote: updateNote }),
+        React.createElement("div", { className: "note__comments comments" },
+            React.createElement(NoteCommentsPanel_1.default, null))));
 }
-exports.NoteContent = NoteContent;
-exports.default = NoteContent;
+exports.NotesComponent = NotesComponent;
+exports.default = NotesComponent;
 
 
 /***/ }),
@@ -3867,19 +3913,53 @@ exports.default = NoteContent;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var NoteCommentsItem_1 = __webpack_require__(64);
+function NoteContent(_a) {
+    var selectedItem = _a.selectedItem, updateNote = _a.updateNote;
+    if (selectedItem === undefined) {
+        selectedItem = { content: '', id: 0, name: '', date: new Date(), isSelected: false, comments: [] };
+    }
+    function onNameChange() {
+    }
+    return (React.createElement("div", { className: "note" },
+        React.createElement("div", { className: "note__header" },
+            React.createElement("div", { className: "note__title" },
+                React.createElement("textarea", { placeholder: "Title" }, selectedItem.name)),
+            React.createElement("span", { className: "note__date" }, selectedItem.date.toUTCString()),
+            React.createElement("p", null, selectedItem.id)),
+        React.createElement("div", { suppressContentEditableWarning: true, contentEditable: true, className: "note__content" }, selectedItem.content),
+        React.createElement("div", { className: "form-group note__addFile" },
+            React.createElement("label", { htmlFor: "noteFile" },
+                React.createElement("span", { className: "btn btn-primary" }, "Add file ")),
+            React.createElement("input", { type: "file", id: "noteFile" })),
+        React.createElement("button", { onClick: function () { updateNote(selectedItem); } }, "Save")));
+}
+exports.NoteContent = NoteContent;
+exports.default = NoteContent;
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var NoteCommentsItem_1 = __webpack_require__(65);
+var NoteNewComment_1 = __webpack_require__(66);
 function NoteCommentsPanel() {
     return (React.createElement("div", { className: "comments__panel" },
         React.createElement("div", { className: "comments__header" }, "Comments : "),
         React.createElement("ul", { className: "comment__list" },
-            React.createElement(NoteCommentsItem_1.default, null))));
+            React.createElement(NoteCommentsItem_1.default, null)),
+        React.createElement(NoteNewComment_1.default, null)));
 }
 exports.NoteCommentsPanel = NoteCommentsPanel;
 exports.default = NoteCommentsPanel;
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3899,14 +3979,15 @@ exports.default = NoteCommentsItem;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-function NoteNewComment() {
+function NoteNewComment(_a) {
+    var onAddComment = _a.onAddComment;
     return (React.createElement("div", { className: "newComment newComent-wrap" },
         React.createElement("h2", { className: "newComment__header" }, "Add comment"),
         React.createElement("form", { action: "", className: "newComment__form" },
@@ -3917,14 +3998,14 @@ function NoteNewComment() {
                 React.createElement("div", { className: "form-group" },
                     React.createElement("label", { htmlFor: "newCommentContent", className: "sr-only" }, "Content:"),
                     React.createElement("textarea", { required: true, id: "newCommentContent", placeholder: "Your comment", className: "form-control newComment__input" }))),
-            React.createElement("button", { type: "submit", className: "btn btn-sm btn-primary  mr-sm-2" }, "Add comment"))));
+            React.createElement("button", { type: "submit", onClick: onAddComment, className: "btn btn-sm btn-primary  mr-sm-2" }, "Add comment"))));
 }
 exports.NoteNewComment = NoteNewComment;
 exports.default = NoteNewComment;
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3932,7 +4013,7 @@ exports.default = NoteNewComment;
 Object.defineProperty(exports, "__esModule", { value: true });
 var actions = __webpack_require__(22);
 var react_redux_1 = __webpack_require__(2);
-var OptionPanel_1 = __webpack_require__(67);
+var OptionPanel_1 = __webpack_require__(68);
 function mapDispatchToProps(dispatch) {
     return {
         onAddNote: function () { return dispatch(actions.addNote()); }
@@ -3943,7 +4024,7 @@ exports.default = react_redux_1.connect((function () { }), mapDispatchToProps)(O
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

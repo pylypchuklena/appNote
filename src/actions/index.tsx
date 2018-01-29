@@ -1,5 +1,5 @@
 import * as constants from '../constants';
-import { SourceTypes } from '../types/NoteModel';
+import { SourceTypes, NoteModel } from '../types/NoteModel';
 import { INoteAction } from './index';
 
 //source
@@ -24,9 +24,28 @@ export function addNote():INoteAction{
 }
 
 export function selectNote(id:number):INoteAction{
-    return {type:constants.CHANGE_SELECTED_NOTE,value:id}
+    return {
+        type:constants.CHANGE_SELECTED_NOTE,
+        value:id
+    }
 }
 
 export function deleteNote(id:number):INoteAction{
-    return {type:constants.DELETE_NOTE,value:id}
+    return {
+        type:constants.DELETE_NOTE,
+        value:id
+    }
+}
+export function addComment():INoteAction{
+    return{
+        type:constants.ADD_COMMENT,
+        value:null
+    }
+}
+
+export function updateNote(item:NoteModel):INoteAction{
+    return{
+        type:constants.UPDATE_NOTE,
+        value:item
+    }
 }

@@ -7,5 +7,6 @@ export const ADD_NOTE="ADD_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 
 export const CHANGE_SELECTED_NOTE="CHANGE_SELECTED_NOTE";
-
+export const ADD_COMMENT="ADD_COMMENT";
+export const UPDATE_NOTE="UPDATE_NOTE";
 

@@ -1,7 +1,11 @@
 import * as React from "react";
 import {NoteModel, NoteComment} from '../types/NoteModel';
 
-export function NoteNewComment(){
+interface Props{
+    onAddComment?: () => void
+}
+
+export function NoteNewComment({onAddComment}:Props){
     return(
         <div className="newComment newComent-wrap">
             <h2 className="newComment__header">Add comment</h2>
@@ -17,7 +21,7 @@ export function NoteNewComment(){
                     </div>
                 
                 </div>
-                <button type="submit" className="btn btn-sm btn-primary  mr-sm-2">Add comment</button>
+                <button type="submit" onClick={onAddComment} className="btn btn-sm btn-primary  mr-sm-2">Add comment</button>
             </form>
         </div>
     )

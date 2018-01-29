@@ -1,15 +1,34 @@
 import * as React from 'react'
 import { NoteModel } from '../types/NoteModel';
 
-export function NoteContent(){
+export interface itemProps{
+    selectedItem:NoteModel;
+    updateNote: (item:NoteModel)=>void;
+}
+
+export function NoteContent({selectedItem,updateNote}:itemProps){
+    if(selectedItem===undefined){
+        selectedItem = {content:'',id:0, name:'', date: new Date(), isSelected:false, comments:[]};
+    }
+
+    function onNameChange(){
+
+    }
+
     return(
         <div className="note">
             <div className="note__header">
-                <div  suppressContentEditableWarning={true} contentEditable={true} className="note__title">Note title</div>
-                <span className="note__date" >21.01.2018</span>
+            <div className="note__title">
+                <textarea placeholder="Title">{selectedItem.name}</textarea>
+            </div>
+            
+
+                {/* <div  suppressContentEditableWarning={true} contentEditable={true} className="note__title"></div> */}
+                <span className="note__date" >{selectedItem.date.toUTCString()}</span>
+                <p>{selectedItem.id}</p>
             </div>
             <div suppressContentEditableWarning={true} contentEditable={true}  className="note__content">
-                content Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut necessitatibus minima, harum nostrum odit numquam repudiandae ducimus ut dolorum consequatur sunt officia voluptates porro rerum amet ab? Pariatur, vitae unde?
+                {selectedItem.content}
             </div>
             <div className="form-group note__addFile">
                 <label htmlFor="noteFile">
@@ -17,6 +36,7 @@ export function NoteContent(){
                 </label>
                 <input type="file" id="noteFile" />
             </div>
+            <button onClick={()=>{updateNote(selectedItem)}}>Save</button>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { INoteAction } from '../actions';
-import { AppState, SourceTypes, NoteModel } from '../types/NoteModel';
+import { AppState, SourceTypes, NoteModel, NoteComment } from '../types/NoteModel';
 import * as constants from '../constants';
 
 
@@ -37,6 +37,9 @@ function addNote(state:AppState):AppState{
         noteList: unselectedNoteList.concat([note]),
     };
 }
+// function addNewComment(state:AppState):AppState{
+//     var comment = newComment();
+// }
 
 function deleteNote(state:AppState,id:number):AppState{
     return {...state, 
@@ -55,6 +58,14 @@ function newNote():NoteModel{
     return note;
 }
 
+function newComment():NoteComment{
+    var comment = new NoteComment();
+    comment.author = '';
+    comment.content = 'f';
+    comment.createData = new Date();
+    return comment;
+}
+
 function changeSelectedNote(state:AppState, id:number):AppState{
     return {...state, noteList: state.noteList.map(note=>{
         if(note.id != id)
@@ -64,6 +75,17 @@ function changeSelectedNote(state:AppState, id:number):AppState{
             return note;
         }
         return {...note, isSelected:true} as  NoteModel;
+    })}
+}
+
+function updateNote (state:AppState,item: NoteModel):AppState{
+
+    return {...state, noteList:state.noteList.map(note=>{
+            if(note.id == item.id)
+            {
+                return item;
+            }
+            return note;     
     })}
 }
 
@@ -78,7 +100,10 @@ export function noteReduser(state: AppState, action: INoteAction): AppState {
             return deleteNote(state,action.value as number);
         case constants.CHANGE_SELECTED_NOTE:
             return changeSelectedNote(state,action.value as number );
-        
+            case constants.UPDATE_NOTE:
+            return updateNote(state,action.value as NoteModel)
+        // case constants.ADD_COMMENT:
+        //     return addNewComment(state);
         default:
             return state;
     }
