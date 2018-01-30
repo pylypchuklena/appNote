@@ -5,13 +5,13 @@ import { NoteModel } from "../types/NoteModel";
 
 export interface IListProps{
     notesList:NoteModel[];
-    onSelectionChanged: (id:number)=>void;
-    deleteNote:(id:number)=>void;
+    onSelectionChanged: (id:string)=>void;
+    deleteNote:(id:string)=>void;
 }
 
 export function ListNotes({notesList,onSelectionChanged,deleteNote}:IListProps){
     const listItems = notesList.map((item) =>
-    <ListNotesItem key={item.id.toString()}
+    <ListNotesItem key={item.id}
      item={item}
      onSelectionChanged={onSelectionChanged} 
      deleteNote={deleteNote}/>);

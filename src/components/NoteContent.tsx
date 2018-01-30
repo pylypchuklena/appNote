@@ -7,35 +7,31 @@ export interface itemProps{
 }
 
 export function NoteContent({selectedItem,updateNote}:itemProps){
-
-    function handleChange(e:any){
-        selectedItem.content = e.currentTarget.innerText;
-    }
     function handleChangeTitle(e:any){
-        selectedItem.name = e.currentTarget.innerText;
+        updateNote({...selectedItem,name:e});
     }
-
+    function handleChangeContent(e:any){
+        updateNote({...selectedItem,content:e});
+    }
+    function handleSubmit(e:any){
+        e.preventDeault();
+    }
     if(selectedItem){
+        
     return(
-        <div className="note">
+        <form onSubmit={(e)=>handleSubmit(e.preventDefault())}>
             <div className="note__header">
-                <div  suppressContentEditableWarning={true} contentEditable={true} className="note__title" onKeyUp={(e)=>{handleChangeTitle(e)}}>{selectedItem.name}</div>
-                <span className="note__date" >{selectedItem.date.toUTCString()}</span>
-                <p>{selectedItem.id}</p>
-            </div>
-            <div suppressContentEditableWarning={true} contentEditable={true} onKeyUp={(e)=>{handleChange(e)}} className="note__content">
-                {selectedItem.content}
-            </div>
-            <div className="form-group note__addFile">
-                <label htmlFor="noteFile">
-                    <span className="btn btn-primary">Add file </span> 
+                <label className="flex-row">
+                    <input type="text" placeholder="Title" value={selectedItem.name} onChange={(e)=>handleChangeTitle(e.target.value)}/>
                 </label>
-                <input type="file" id="noteFile" />
             </div>
-            <button onClick={()=>{updateNote(selectedItem)}}>Save</button>
-        </div>
+            <div className="note__content">
+                <textarea  value={selectedItem.content} onChange={(e)=>handleChangeContent(e.target.value)}></textarea>
+            </div>
+        </form>
     )}
-    else return (<div>as</div>)
+    else return (<div></div>)
+
 }
  
 export default NoteContent;

@@ -1,26 +1,21 @@
 import * as actions from '../actions/';
-import { AppState, SourceTypes, NoteModel } from '../types/NoteModel';
+import { AppState } from '../types/NoteModel';
 import { connect, Dispatch } from 'react-redux';
 import * as constants from '../constants';
-import noteList from '../components/ListNotes'
-import { NotesComponent, INewComment } from "../components/NotesComponent";
+import { ListNotes } from '../components/ListNotes';
 
 
 export function mapStateToProps(state:AppState){
-    var items = state.noteList.filter(item=> {return item.isSelected === true});
-      var item = items.length>0 ? items[0] : undefined;
-    return {
-    note: item
-  };
+    return{
+      notesList:state.notes
+    }
 }
-
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
-    updateNote: (item:NoteModel) => dispatch(actions.updateNote(item)),
-    addComment:(payload:INewComment) => dispatch(actions.addComment(payload)),
-    onAddNote:()=>dispatch(actions.addNote())
+    onSelectionChanged: (id:string) => dispatch(actions.selectNote(id)),
+    deleteNote:(id:string) => dispatch(actions.deleteNote(id)),
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(NotesComponent);
+export default connect(mapStateToProps,mapDispatchToProps)(ListNotes);

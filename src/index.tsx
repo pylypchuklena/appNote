@@ -3,8 +3,8 @@ import * as ReactDom from 'react-dom';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import { NoteModel, AppState , SourceTypes} from './types/NoteModel';
-import { noteReduser} from './reducers/index';
+import { NoteModel, AppState , SourceTypes, NoteComment} from './types/NoteModel';
+import { appReduser} from './reducers/index';
 import AppContainer from './components/AppContainer';
 
 
@@ -13,12 +13,13 @@ import AppContainer from './components/AppContainer';
 function defaultState():AppState {
     
     return {
-        noteList:new Array<NoteModel>(),
+        notes:new Array<NoteModel>(),
+        comments:new Array<NoteComment>(),
         storageType:SourceTypes.LOCALSTORAGE
     };
 }
 
-const store = createStore<AppState>(noteReduser,defaultState())
+const store = createStore<AppState>(appReduser,defaultState())
 
 ReactDom.render(
     <Provider store={store}>

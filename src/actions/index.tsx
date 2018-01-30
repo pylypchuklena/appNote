@@ -1,7 +1,7 @@
 import * as constants from '../constants';
-import { SourceTypes, NoteModel } from '../types/NoteModel';
+import { SourceTypes, NoteModel, NoteComment } from '../types/NoteModel';
 import { INoteAction } from './index';
-import { INewComment } from '../components/NotesComponent';
+import{ v4 } from 'node-uuid';
 
 //source
 
@@ -18,29 +18,34 @@ export function changeStore(sourceType:SourceTypes):INoteAction{
 }
 
 export function addNote():INoteAction{
+        var item = new NoteModel();
+        item = {id:v4(), name:'', content: '', date: new Date(), isSelected: true};
     return {
         type:constants.ADD_NOTE,
-        value:null
+        value: item
     }
 }
 
-export function selectNote(id:number):INoteAction{
+export function selectNote(id:string):INoteAction{
     return {
         type:constants.CHANGE_SELECTED_NOTE,
         value:id
     }
 }
 
-export function deleteNote(id:number):INoteAction{
+export function deleteNote(id:string):INoteAction{
     return {
         type:constants.DELETE_NOTE,
         value:id
     }
 }
-export function addComment(payload:INewComment):INoteAction{
+export function addComment(comment:NoteComment):INoteAction{
+    comment.id= v4();
+    comment.createDate = new Date();
+    
     return{
         type:constants.ADD_COMMENT,
-        value:payload
+        value:comment
     }
 }
 

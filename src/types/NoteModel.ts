@@ -4,23 +4,22 @@ export enum SourceTypes{
 }
 
 export class NoteModel{
-    id: number;
+    id: string;
     name:string;
     content:string;
     date:Date;
     isSelected:boolean;
-    comments:Array<NoteComment>;
-    rows: number;
-    lineHeight: number;
 }
 export class NoteComment{
-    id:number;
+    id:string;
+    noteId:string;
     author:string;
     content:string;
-    createData:Date;
+    createDate:Date;
 }
 
 export class AppState{
     storageType:SourceTypes;
-    noteList:Array<NoteModel>;
+    notes:Array<NoteModel>;
+    comments: Array<NoteComment>;
 }

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Hello from '../containers/Hello';
 import OptionPanel from './OptionPanel';
 import SourceList from './SourceList';
-import ListNotesContainer from '../containers/ListNotesContainer';
 import NotesContainer from '../containers/NotesContainer';
 import OptionPanelContainer from '../containers/OptionPanelContainer';
+import ActiveNoteContainer from '../containers/ActiveNoteContainer';
+import CommentsContainer from '../containers/CommentsContainer';
+import SourceContainer from '../containers/SourceContainer';
 
 function AppContainer() {
  
@@ -12,14 +13,20 @@ function AppContainer() {
         <div className="container">
             <OptionPanelContainer/>
             <div className="row">
-                <div className="col-2 no-pdng-r">
-                    <SourceList/>
+                <div className="col-md-2 col-sm-3 no-pdng-r">
+                    <SourceContainer/>
                 </div>
-                <div className="col-3 no-pdng">
-                    <ListNotesContainer/>
+                <div className="col-md-3 col-sm-4 no-pdng">
+                
+                        <NotesContainer/>
+                   
+                    
                 </div>
-                <div className="col-7 no-pdng-l">
-                    <NotesContainer/>
+                <div className="col-md-7 col-sm-5 no-pdng-l ">
+                    <div className="activeNoteSection">
+                        <ActiveNoteContainer/>
+                        <CommentsContainer/>
+                    </div>
                 </div>
             </div>
         </div>
