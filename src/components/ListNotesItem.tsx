@@ -20,7 +20,7 @@ export function ListNotesItem({item,onSelectionChanged,deleteNote}:itemProps){
                 
             </div>
             <div className="notes-list__item__footer flex-row">
-                <span className="comment__date comment__date--list">{item.date.toLocaleString()}</span>
+                <span className="comment__date comment__date--list">{item.date}</span>
                 <span className="comment__content comment__content--list ">{item.content}</span>
             </div>
         </li>    

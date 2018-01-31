@@ -248,3 +248,11 @@ aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
 .hide{
     display: none;
 }
+.isValid, .isValid:focus{
+    border-color: green;
+    box-shadow:green;
+}
+.inValid, .inValid:focus{
+    border-color: red;
+    box-shadow:red;
+}

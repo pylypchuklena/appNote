@@ -11,8 +11,8 @@ export function mapStateToProps(state:AppState){
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
-    changeSource: (item:SourceTypes) => dispatch(actions.changeStore(item))
+    changeSource: (item:number) => dispatch(actions.changeStore(item))
   };
-}
+} 
 
 export default connect(mapStateToProps,mapDispatchToProps)(SourceList);
