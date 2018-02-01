@@ -12,47 +12,47 @@ export interface INoteAction{
     value:any
 }
 
-export function changeStore(sourceType:number):INoteAction{
-    var curentState:AppState;
-    if(sourceType == SourceTypes.LOCALSTORAGE)
-    {
-         curentState = loadState(SourceTypes.LOCALSTORAGE);
+function newState():AppState{
+    return {notes:new Array<NoteModel>(),
+        comments:new Array<NoteComment>(),
+        storageType:SourceTypes.LOCALSTORAGE};
+}
+
+export function fetchNotesFromFireBase(){
+    return function(dispatch:any){
+        return firebaseRef.database().ref('state').once('value').then(
+                (snap:any)=>{
+                    var curentState = snap.val();
+                    console.log("From Firebase",curentState);
+                    
+                    if(!curentState.notes)
+                    curentState.notes = new Array<NoteModel>();
+                    if(!curentState.comments)
+                    curentState.comments = new Array<NoteComment>();
+                    console.log("From Firebase2",curentState);
+                        dispatch( {
+                        type:constants.CHANGE_SOURCE,
+                        value:{
+                            state:curentState,
+                            sourceType:SourceTypes.FIREBASE}
+                    });
+                });
+    }
+}
+
+export function fetchNotesFromLocalStorage():INoteAction{
+    
+         var curentState = loadState(SourceTypes.LOCALSTORAGE);
+
+         if(!curentState)
+             curentState = curentState = newState();
+
          return {
             type:constants.CHANGE_SOURCE,
             value:{
                 state:curentState,
-                sourceType:sourceType}
+                sourceType:SourceTypes.LOCALSTORAGE}
         }
-    }
-    else{
-        //  firebaseRef.database().ref('state').once('value').then(
-        //     (snap:any)=>{
-        //         curentState = snap.val();
-        //         console.log("From Firebase",curentState);
-        //         return {
-        //             type:constants.CHANGE_SOURCE,
-        //             value:{
-        //                 state:curentState,
-        //                 sourceType:sourceType}
-        //         }
-        //     }
-        // )
-         curentState = loadState(SourceTypes.FIREBASE);
-    }
-
-    if(!curentState)
-    {
-        curentState = {notes:new Array<NoteModel>(),
-            comments:new Array<NoteComment>(),
-            storageType:SourceTypes.LOCALSTORAGE}
-    }
-
-    return {
-        type:constants.CHANGE_SOURCE,
-        value:{
-            state:curentState,
-            sourceType:sourceType}
-    }
 }
 
 export function addNote():INoteAction{
