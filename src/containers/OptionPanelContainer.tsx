@@ -7,7 +7,7 @@ import OptionPanel from '../components/OptionPanel';
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
-    onAddNote: () => dispatch(actions.addNote())
+    onAddNote: () => dispatch(actions.addNote(null))
   };
 }
 

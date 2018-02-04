@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
 import {Provider} from 'react-redux';
-import {createStore,applyMiddleware} from 'redux';
+import {createStore,applyMiddleware, combineReducers} from 'redux';
 import { NoteModel, AppState , SourceTypes, NoteComment} from './types/NoteModel';
 import { appReduser} from './reducers/index';
 import AppContainer from './components/AppContainer';
@@ -20,7 +20,6 @@ var config = {
   };
 export const firebaseRef = firebase.initializeApp(config);
 const persistedState = loadState(SourceTypes.LOCALSTORAGE);
-
 
 const store = createStore<AppState>(appReduser,persistedState,applyMiddleware(ReduxThunk))
 

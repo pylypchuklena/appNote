@@ -6,31 +6,30 @@ import OptionPanelContainer from '../containers/OptionPanelContainer';
 import ActiveNoteContainer from '../containers/ActiveNoteContainer';
 import CommentsContainer from '../containers/CommentsContainer';
 import SourceContainer from '../containers/SourceContainer';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
+import { MainContainer } from './MainContainer';
+import OptionContainer from './OptionContainer';
+import NoteNewComment from './NoteNewComment';
+import { NewNoteComponent } from './NewNoteComponent';
+import AddNotesContainer from '../containers/AddNotesContainer';
 
 function AppContainer() {
- 
     return (
+        <Router>
         <div className="container">
-            <OptionPanelContainer/>
-            <div className="row">
-                <div className="col-md-2 col-sm-3 no-pdng-r">
-                    <SourceContainer/>
+                <OptionPanelContainer />
+                <div className="row">
+                    <Route exact path="/" component={MainContainer} />
+                    <Route path="/options" component={OptionContainer} />
+                    <Route path="/newNote" component={AddNotesContainer} />
                 </div>
-                <div className="col-md-3 col-sm-4 no-pdng">
-                
-                        <NotesContainer/>
-                   
-                    
-                </div>
-                <div className="col-md-7 col-sm-5 no-pdng-l ">
-                    <div className="activeNoteSection">
-                        <ActiveNoteContainer/>
-                        <CommentsContainer/>
-                    </div>
-                </div>
-            </div>
         </div>
+        </Router>
     );
-  }
-  
-  export default AppContainer;
+}
+
+export default AppContainer;

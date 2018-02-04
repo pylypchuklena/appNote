@@ -17,7 +17,7 @@ export function mapStateToProps(state:AppState){
 export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
     updateNote: (item:NoteModel) => dispatch(actions.updateNote(item)),
-    onAddNote:()=>dispatch(actions.addNote())
+    onAddNote:()=>dispatch(actions.addNote(null))
   };
 }
 
