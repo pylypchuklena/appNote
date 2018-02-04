@@ -12,7 +12,6 @@ interface State {
 }
 
 export class NoteNewComment extends React.Component<Props, State>{
-    // regexString = "/[A-Z]{1}[a-z]+\s{1}[A-Z]{1}[a-z]+/gm";
 
     constructor(props: Props) {
         super(props);
@@ -33,13 +32,10 @@ export class NoteNewComment extends React.Component<Props, State>{
     }
 
     handleAuthor(e: any) {
-        //var regext = new RegExp("[A-Z]{1}[a-z]+\s{1}[a-z]+");
-        //console.log(regext.test(e.currentTarget.value));
         this.setState(
             {
                 authorValid: this.validateAuthor(e.currentTarget.value),
                 valueAuthor: e.currentTarget.value
-
             });
     }
     handleContent(e: any) {
@@ -48,7 +44,7 @@ export class NoteNewComment extends React.Component<Props, State>{
         });
     }
     clearTextInput() {
-        this.setState({ ...this.state, valueComment: '', valueAuthor: '' });
+        this.setState({ ...this.state, valueComment: '', valueAuthor: '', authorValid:false });
     }
     submitForm(e: any) {
         e.preventDefault();

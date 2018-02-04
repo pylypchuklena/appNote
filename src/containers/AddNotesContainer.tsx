@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom'
 
 export function mapStateToProps(state:AppState){
     return{
-      label:""
     }
 }
 

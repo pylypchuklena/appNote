@@ -7,24 +7,26 @@ export interface itemProps {
 }
 
 export class NoteContent extends React.Component<itemProps>{
-    /**
-     *
-     */
+
     constructor(props: itemProps) {
         super(props);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     handleChangeTitle(e: any) {
         this.props.updateNote({ ...this.props.selectedItem, name: e });
     }
+
     handleChangeContent(e: any) {
         this.props.updateNote({ ...this.props.selectedItem, content: e });
     }
+
     handleSubmit(e: any) {
         e.preventDeault();
     }
+
     render() {
         if (this.props.selectedItem) {
 

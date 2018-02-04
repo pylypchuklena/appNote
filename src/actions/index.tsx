@@ -64,6 +64,12 @@ export function addNote(item: NoteModel): INoteAction {
         item = new NoteModel();
         item = { id: v4(), name: '', content: '', date: new Date().toLocaleString(), isSelected: true };
     }
+    else{
+        item.date = new Date().toLocaleString();
+        item.id = v4();
+        item.isSelected=true;
+    }
+    
     return {
         type: constants.ADD_NOTE,
         value: item
