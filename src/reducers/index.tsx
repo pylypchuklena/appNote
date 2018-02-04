@@ -40,14 +40,6 @@ function addNewComment(state:NoteComment[], item:NoteComment):NoteComment[]{
     return[...state, item]
 }
 
-// function initialState():AppState {
-//     return {
-//         notes:new Array<NoteModel>(),
-//         comments:new Array<NoteComment>(),
-//         storageType:SourceTypes.LOCALSTORAGE
-//     };
-// }
-
 export const appReduser = combineReducers<AppState>({
     storageType : sourceReduser,
     comments: commentReduser,

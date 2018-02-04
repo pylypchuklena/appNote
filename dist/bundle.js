@@ -8937,12 +8937,10 @@ function fetchNotesFromFireBase() {
     return function (dispatch) {
         return index_1.firebaseRef.database().ref('state').once('value').then(function (snap) {
             var curentState = snap.val();
-            console.log("From Firebase", curentState);
             if (!curentState.notes)
                 curentState.notes = new Array();
             if (!curentState.comments)
                 curentState.comments = new Array();
-            console.log("From Firebase2", curentState);
             dispatch({
                 type: constants.CHANGE_SOURCE,
                 value: {
@@ -8957,7 +8955,7 @@ exports.fetchNotesFromFireBase = fetchNotesFromFireBase;
 function fetchNotesFromLocalStorage() {
     var curentState = localStorageService_1.loadState(NoteModel_1.SourceTypes.LOCALSTORAGE);
     if (!curentState)
-        curentState = curentState = newState();
+        curentState = newState();
     return {
         type: constants.CHANGE_SOURCE,
         value: {
@@ -17357,6 +17355,7 @@ var AppContainer_1 = __webpack_require__(228);
 var localStorageService_1 = __webpack_require__(159);
 var firebase = __webpack_require__(354);
 var redux_thunk_1 = __webpack_require__(434);
+//Firebase config
 var config = {
     apiKey: "AIzaSyDZJW0IzePTQ_tFpisB-5XhdiuBk6uP47s",
     authDomain: "appnote-753e9.firebaseapp.com",
@@ -32256,13 +32255,6 @@ function updateNote(state, item) {
 function addNewComment(state, item) {
     return state.concat([item]);
 }
-// function initialState():AppState {
-//     return {
-//         notes:new Array<NoteModel>(),
-//         comments:new Array<NoteComment>(),
-//         storageType:SourceTypes.LOCALSTORAGE
-//     };
-// }
 exports.appReduser = redux_1.combineReducers({
     storageType: sourceReduser,
     comments: commentReduser,

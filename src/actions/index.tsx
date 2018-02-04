@@ -25,13 +25,12 @@ export function fetchNotesFromFireBase() {
         return firebaseRef.database().ref('state').once('value').then(
             (snap: any) => {
                 var curentState = snap.val();
-                console.log("From Firebase", curentState);
 
                 if (!curentState.notes)
                     curentState.notes = new Array<NoteModel>();
                 if (!curentState.comments)
                     curentState.comments = new Array<NoteComment>();
-                console.log("From Firebase2", curentState);
+
                 dispatch({
                     type: constants.CHANGE_SOURCE,
                     value: {
@@ -48,7 +47,7 @@ export function fetchNotesFromLocalStorage(): INoteAction {
     var curentState = loadState(SourceTypes.LOCALSTORAGE);
 
     if (!curentState)
-        curentState = curentState = newState();
+        curentState = newState();
 
     return {
         type: constants.CHANGE_SOURCE,
@@ -64,12 +63,12 @@ export function addNote(item: NoteModel): INoteAction {
         item = new NoteModel();
         item = { id: v4(), name: '', content: '', date: new Date().toLocaleString(), isSelected: true };
     }
-    else{
+    else {
         item.date = new Date().toLocaleString();
         item.id = v4();
-        item.isSelected=true;
+        item.isSelected = true;
     }
-    
+
     return {
         type: constants.ADD_NOTE,
         value: item
