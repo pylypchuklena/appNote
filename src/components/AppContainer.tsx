@@ -11,18 +11,12 @@ function AppContainer() {
  
     return (
         <div className="container">
-            <OptionPanelContainer/>
+                <OptionPanelContainer/>
             <div className="row">
-                <div className="col-md-2 col-sm-3 no-pdng-r">
-                    <SourceContainer/>
-                </div>
-                <div className="col-md-3 col-sm-4 no-pdng">
-                
+                <div className="col-md-4 col-sm-4 no-pdng-r">
                         <NotesContainer/>
-                   
-                    
                 </div>
-                <div className="col-md-7 col-sm-5 no-pdng-l ">
+                <div className="col-md-8 col-sm-8 no-pdng-l ">
                     <div className="activeNoteSection">
                         <ActiveNoteContainer/>
                         <CommentsContainer/>

@@ -6,19 +6,19 @@ import { SourceList } from '../components/SourceList';
 import { fetchNotesFromLocalStorage } from '../actions/index';
 
 
-export function mapStateToProps(state:AppState){
-    return {selectStorage: state.storageType}
+export function mapStateToProps(state: AppState) {
+  return { selectStorage: state.storageType }
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
-    changeSource: (item:number) => {
-      if(item == SourceTypes.LOCALSTORAGE)
-      dispatch(actions.fetchNotesFromLocalStorage())
+    changeSource: (item: number) => {
+      if (item == SourceTypes.LOCALSTORAGE)
+        dispatch(actions.fetchNotesFromLocalStorage())
       else
-      dispatch(actions.fetchNotesFromFireBase())
+        dispatch(actions.fetchNotesFromFireBase())
     }
   };
-} 
+}
 
-export default connect(mapStateToProps,mapDispatchToProps)(SourceList);
+export default connect(mapStateToProps, mapDispatchToProps)(SourceList);
