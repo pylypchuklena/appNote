@@ -25,7 +25,7 @@ export function OptionPanel({ onAddNote }: Props) {
                     </div>
                 </nav>
             </div>
-        </div>
-    )
+        )
+    }
 }
 export default OptionPanel;

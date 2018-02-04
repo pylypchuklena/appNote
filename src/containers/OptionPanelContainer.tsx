@@ -4,11 +4,13 @@ import { connect, Dispatch } from 'react-redux';
 import * as constants from '../constants';
 import OptionPanel from '../components/OptionPanel';
 
-
 export function mapDispatchToProps(dispatch: Dispatch<actions.INoteAction>) {
   return {
     onAddNote: () => dispatch(actions.addNote(null))
   };
 }
 
-export default connect((()=>{}),mapDispatchToProps)(OptionPanel);
+export default connect(
+  (state: AppState) => { return {} },
+  mapDispatchToProps)
+  (OptionPanel);
