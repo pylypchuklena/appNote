@@ -1,5 +1,5 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,strike,strong,tt,var,b,u,i,center,
-dl,dt,dd,ol,ul,li,fieldset,form,label,legend {
+dl,dt,dd,ol,ul,li,fieldset,form,legend {
     margin: 0;
     padding: 0;
     border: 0;
@@ -80,11 +80,19 @@ ul{
     height: 100%;
     min-height: 355px;
 }
+.activeNoteSection>a{
+    height:100%;
+    color: #ccc;
+    text-decoration: none;
+}
 .note__header input{
     flex-grow: 1;
     border: none;
     border-bottom: 1px solid #cccccc;
     padding: 10px;
+}
+.note__header label{
+    margin:0;
 }
 .note__title{
     font-weight: 600;
@@ -129,7 +137,7 @@ ul{
 .comment__author{
     min-width: 90px;
     min-height: 1.5em;
-    max-width: 100px;
+    max-width: calc( 100% - 20px);
 }
 .comment__content{
     word-break: break-word;
@@ -146,12 +154,15 @@ ul{
 .newComment__inputs .form-group label{
     min-width: 60px;
 }
+textarea.newComment__input{
+    min-height: 250px;
+}
 .newComment__header{
     padding: 10px 10px 20px;
 }
 .newComment{
     padding: 10px ;
-    background: rgb(163, 162, 162);
+    background: rgba(230, 230, 230, 0.5);
 }
 .flex-row{
     flex-direction: row;
@@ -265,4 +276,26 @@ ul{
 .inValid, .inValid:focus{
     border-color: red;
     box-shadow:red;
+}
+.wrapButton{
+    padding: 15px;
+}
+.flex-center{
+    align-items: center;
+    display: flex;
+}
+a{color: #333}
+.option__title{
+    padding: 15px;
+}
+.option__input input{
+    margin-bottom: 3px;
+}
+.fa-pencil:before{
+    font-size: 28px;
+}
+.nav-items--left .nav-item:last-child{
+    border-left: 1px solid #ccc;
+    margin-left: 15px;
+    padding-left: 10px;
 }

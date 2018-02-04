@@ -17373,7 +17373,6 @@ store.subscribe(function () {
         localStorageService_1.saveState(store.getState(), NoteModel_1.SourceTypes.LOCALSTORAGE);
     else
         exports.firebaseRef.database().ref("state").set(store.getState());
-    //saveState(store.getState(),SourceTypes.FIREBASE);
 });
 ReactDom.render(React.createElement(react_redux_1.Provider, { store: store },
     React.createElement(AppContainer_1.default, null)), document.getElementById("app"));
@@ -32257,28 +32256,12 @@ function updateNote(state, item) {
 function addNewComment(state, item) {
     return state.concat([item]);
 }
-function initialState() {
-    return {
-        notes: new Array(),
-        comments: new Array(),
-        storageType: NoteModel_1.SourceTypes.LOCALSTORAGE
-    };
-}
-// export function appReduser(state: AppState = initialState(), action: INoteAction): AppState {
-//     console.log(action);
-//     switch (action.type) {
-//         case constants.CHANGE_SOURCE:
-//             return {...state, storageType: sourceReduser(state.storageType, action)};
-//         case constants.ADD_COMMENT:
-//             return {...state, comments: commentReduser(state.comments, action)};
-//         case constants.ADD_NOTE:
-//         case constants.DELETE_NOTE:
-//         case constants.CHANGE_SELECTED_NOTE:          
-//         case constants.UPDATE_NOTE:
-//             return{...state, notes: noteReduser(state.notes, action)};
-//         default:
-//             return state;
-//     }
+// function initialState():AppState {
+//     return {
+//         notes:new Array<NoteModel>(),
+//         comments:new Array<NoteComment>(),
+//         storageType:SourceTypes.LOCALSTORAGE
+//     };
 // }
 exports.appReduser = redux_1.combineReducers({
     storageType: sourceReduser,
@@ -32345,9 +32328,10 @@ function AppContainer() {
         React.createElement("div", { className: "container" },
             React.createElement(OptionPanel_1.default, null),
             React.createElement("div", { className: "row" },
-                React.createElement(react_router_dom_1.Route, { exact: true, path: "/", component: MainContainer_1.MainContainer }),
-                React.createElement(react_router_dom_1.Route, { path: "/options", component: SourceContainer_1.default }),
-                React.createElement(react_router_dom_1.Route, { path: "/newNote", component: AddNotesContainer_1.default })))));
+                React.createElement("div", { className: "col-12" },
+                    React.createElement(react_router_dom_1.Route, { exact: true, path: "/", component: MainContainer_1.MainContainer }),
+                    React.createElement(react_router_dom_1.Route, { path: "/options", component: SourceContainer_1.default }),
+                    React.createElement(react_router_dom_1.Route, { path: "/newNote", component: AddNotesContainer_1.default }))))));
 }
 exports.default = AppContainer;
 
@@ -34751,9 +34735,9 @@ var MainContainer = /** @class */ (function (_super) {
     }
     MainContainer.prototype.render = function () {
         return (React.createElement("div", { className: "row" },
-            React.createElement("div", { className: "col-md-3 col-sm-4 no-pdng" },
+            React.createElement("div", { className: "col-sm-4 no-pdng-r" },
                 React.createElement(NotesContainer_1.default, null)),
-            React.createElement("div", { className: "col-md-7 col-sm-5 no-pdng-l " },
+            React.createElement("div", { className: "col-sm-8 no-pdng-l " },
                 React.createElement("div", { className: "activeNoteSection" },
                     React.createElement(ActiveNoteContainer_1.default, null),
                     React.createElement(CommentsContainer_1.default, null)))));
@@ -44996,8 +44980,8 @@ var ListNotesItem = /** @class */ (function (_super) {
     ListNotesItem.prototype.render = function () {
         var _this = this;
         return (React.createElement("li", { className: "notes-list__item flex-column " + (this.props.item.isSelected ? ' active' : ''), onClick: function () { _this.props.onSelectionChanged(_this.props.item.id); } },
-            React.createElement("div", { className: "notes-list__item__delete" },
-                React.createElement("span", { className: "fa fa-trash-o", onClick: function (e) { _this.props.deleteNote(_this.props.item.id); e.preventDefault(); e.stopPropagation(); } })),
+            React.createElement("div", { className: "notes-list__item__delete", onClick: function (e) { _this.props.deleteNote(_this.props.item.id); e.preventDefault(); e.stopPropagation(); } },
+                React.createElement("span", { className: "fa fa-trash-o" })),
             React.createElement("div", { className: "notes-list__item__header" },
                 React.createElement("span", { className: "comment__author" }, this.props.item.name)),
             React.createElement("div", { className: "notes-list__item__footer flex-row" },
@@ -45328,17 +45312,18 @@ var NoteNewComment = /** @class */ (function (_super) {
     };
     NoteNewComment.prototype.render = function () {
         return (React.createElement("div", { className: "newComment newComent-wrap" },
-            React.createElement("h2", { className: "newComment__header" }, "Add comment"),
-            React.createElement("form", { action: "", className: "newComment__form", onSubmit: this.submitForm },
+            React.createElement("form", { className: "newComment__form", onSubmit: this.submitForm },
                 React.createElement("div", { className: "newComment__inputs" },
                     React.createElement("div", { className: "form-group" },
                         React.createElement("label", { htmlFor: "newCommentName" }, "Author:"),
-                        React.createElement("input", { id: "newCommentName", placeholder: "Author", onChange: this.handleAuthor, value: this.state.valueAuthor, type: "text", className: "form-control newComment__input " +
-                                (this.state.authorValid ? 'isValid' : 'inValid') })),
+                        React.createElement("input", { id: "newCommentName", onChange: this.handleAuthor, value: this.state.valueAuthor, type: "text", className: "form-control newComment__input " +
+                                (this.state.authorValid ? 'isValid' : 'inValid') }),
+                        React.createElement("small", { className: "form-text text-muted " + (this.state.authorValid ? "hide" : "Show") }, "* Name and Surname ")),
                     React.createElement("div", { className: "form-group" },
                         React.createElement("label", { htmlFor: "newCommentContent" }, "Content:"),
-                        React.createElement("textarea", { required: true, id: "newCommentContent", value: this.state.valueComment, onChange: this.handleContent, className: "form-control newComment__input" }))),
-                React.createElement("button", { type: "submit", className: "btn btn-sm btn-primary  mr-sm-2" }, "Add comment"))));
+                        React.createElement("textarea", { required: true, id: "newCommentContent", value: this.state.valueComment, onChange: this.handleContent, className: "form-control newComment__input " +
+                                (this.state.authorValid ? 'isValid' : 'inValid') }))),
+                React.createElement("button", { type: "submit", className: "btn btn-md btn-secondary mr-sm-2" }, "Add comment"))));
     };
     return NoteNewComment;
 }(React.Component));
@@ -45405,6 +45390,7 @@ var NewNoteComponent = /** @class */ (function (_super) {
         _this.handleTitle = _this.handleTitle.bind(_this);
         _this.handleContent = _this.handleContent.bind(_this);
         _this.submitForm = _this.submitForm.bind(_this);
+        _this.redirectToMain = _this.redirectToMain.bind(_this);
         return _this;
     }
     NewNoteComponent.prototype.validateTitle = function (str) {
@@ -45428,8 +45414,11 @@ var NewNoteComponent = /** @class */ (function (_super) {
             newNote.name = this.state.title;
             newNote.content = this.state.content;
             this.props.onAddNote(newNote);
-            this.setState(__assign({}, this.state, { isRedirect: true }));
+            this.redirectToMain();
         }
+    };
+    NewNoteComponent.prototype.redirectToMain = function () {
+        this.setState(__assign({}, this.state, { isRedirect: true }));
     };
     NewNoteComponent.prototype.render = function () {
         if (this.state.isRedirect)
@@ -45440,12 +45429,13 @@ var NewNoteComponent = /** @class */ (function (_super) {
                 React.createElement("div", { className: "newComment__inputs" },
                     React.createElement("div", { className: "form-group" },
                         React.createElement("label", { htmlFor: "newCommentName" }, "Title:"),
-                        React.createElement("input", { id: "newCommentName", placeholder: "Title", onChange: this.handleTitle, value: this.state.title, type: "text", className: "form-control newComment__input " +
+                        React.createElement("input", { id: "newCommentName", onChange: this.handleTitle, value: this.state.title, type: "text", className: "form-control newComment__input " +
                                 (this.state.titleValid ? 'isValid' : 'inValid') })),
                     React.createElement("div", { className: "form-group" },
                         React.createElement("label", { htmlFor: "newCommentContent" }, "Content:"),
                         React.createElement("textarea", { required: true, id: "newCommentContent", value: this.state.content, onChange: this.handleContent, className: "form-control newComment__input" }))),
-                React.createElement("button", { type: "submit", className: "btn btn-sm btn-primary  mr-sm-2" }, "Add note"))));
+                React.createElement("button", { type: "submit", className: "btn btn-md btn-secondary  mr-sm-2" }, "Add note"),
+                React.createElement("button", { onClick: this.redirectToMain, className: "btn btn-md btn-outline-secondary mr-sm-2" }, "Cancel"))));
     };
     return NewNoteComponent;
 }(React.Component));
@@ -45481,16 +45471,22 @@ var OptionPanel = /** @class */ (function (_super) {
     OptionPanel.prototype.render = function () {
         return (React.createElement("div", { className: "row" },
             React.createElement("div", { className: "col-12" },
-                React.createElement("nav", { className: "navbar  bg-gradient navbar-expand-md navbar-light bg-faded" },
+                React.createElement("nav", { className: "navbar bg-gradient navbar-expand-md navbar-light bg-faded" },
                     React.createElement("div", { className: " navbar-collapse" },
-                        React.createElement("ul", { className: "navbar-nav" },
-                            React.createElement("li", null,
-                                React.createElement(react_router_dom_1.Link, { to: "/" }, "Main")),
-                            React.createElement("li", null,
-                                React.createElement(react_router_dom_1.Link, { to: "/newNote" },
-                                    React.createElement("button", { className: "nav-link btn btn-link" }, "Add Note"))),
-                            React.createElement("li", null,
-                                React.createElement(react_router_dom_1.Link, { to: "/options" }, "Options"))))))));
+                        React.createElement("ul", { className: "navbar-nav mr-auto nav-items--left" },
+                            React.createElement("li", { className: "nav-item" },
+                                React.createElement(react_router_dom_1.Link, { className: "nav-link", to: "/" },
+                                    React.createElement("span", { className: "fa fa-2x fa-home" }))),
+                            React.createElement("li", { className: "nav-item" },
+                                React.createElement(react_router_dom_1.Link, { className: "nav-link", to: "/newNote" },
+                                    " ",
+                                    React.createElement("span", { className: "fa fa-1x fa-pencil" }),
+                                    "Add Note"))),
+                        React.createElement("ul", { className: "mt-2 mt-mf-0 navbar-nav " },
+                            React.createElement("li", { className: "nav-item" },
+                                React.createElement(react_router_dom_1.Link, { className: "nav-link", to: "/options" },
+                                    " ",
+                                    React.createElement("span", { className: "fa fa-2x fa-cogs" })))))))));
     };
     return OptionPanel;
 }(React.Component));
@@ -45565,13 +45561,18 @@ var SourceList = /** @class */ (function (_super) {
         var _this = this;
         if (this.state.isRedirect)
             return (React.createElement(react_router_1.Redirect, { to: '/' }));
-        return (React.createElement("div", null,
-            React.createElement("ul", { className: "nav" },
-                React.createElement("li", { className: "nav-item nav-item--btn " + (this.props.selectStorage == NoteModel_1.SourceTypes.LOCALSTORAGE ? "active" : ""), onClick: function () { _this.onSelect(NoteModel_1.SourceTypes.LOCALSTORAGE); } },
-                    React.createElement("a", { className: "nav-link", href: "#" }, "LocalStorage")),
-                React.createElement("li", { className: "nav-item nav-item--btn " + (this.props.selectStorage == NoteModel_1.SourceTypes.FIREBASE ? "active" : ""), onClick: function () { _this.onSelect(NoteModel_1.SourceTypes.FIREBASE); } },
+        return (React.createElement("div", { className: "flex-col option" },
+            React.createElement("h2", { className: "option__title " }, "Select store provider :"),
+            React.createElement("div", { className: "form-check option__input" },
+                React.createElement("label", { htmlFor: "radios1", className: " flex-center ", onClick: function () { _this.onSelect(NoteModel_1.SourceTypes.LOCALSTORAGE); } },
+                    React.createElement("input", { type: "radio", id: "radios1", checked: this.props.selectStorage == NoteModel_1.SourceTypes.LOCALSTORAGE }),
+                    React.createElement("a", { className: "nav-link", href: "#" }, "LocalStorage"))),
+            React.createElement("div", { className: "form-check option__input" },
+                React.createElement("label", { htmlFor: "radios2", className: " flex-center ", onClick: function () { _this.onSelect(NoteModel_1.SourceTypes.FIREBASE); } },
+                    React.createElement("input", { type: "radio", id: "radios2", checked: this.props.selectStorage == NoteModel_1.SourceTypes.FIREBASE }),
                     React.createElement("a", { className: "nav-link", href: "#" }, "FireBase"))),
-            React.createElement("button", { onClick: this.navigateBack })));
+            React.createElement("div", { className: "wrapButton" },
+                React.createElement("button", { onClick: this.navigateBack, className: "btn btn-md btn-secondary " }, "Apply"))));
     };
     return SourceList;
 }(React.Component));

@@ -13,14 +13,16 @@ import OptionPanel from './OptionPanel';
 function AppContainer() {
     return (
         <Router>
-        <div className="container">
+            <div className="container">
                 <OptionPanel />
                 <div className="row">
-                    <Route exact path="/" component={MainContainer} />
-                    <Route path="/options" component={SourceContainer} />
-                    <Route path="/newNote" component={AddNotesContainer} />
+                    <div className="col-12">
+                        <Route exact path="/" component={MainContainer}/>
+                        <Route path="/options" component={SourceContainer} />
+                        <Route path="/newNote" component={AddNotesContainer} />
+                    </div>
                 </div>
-        </div>
+            </div>
         </Router>
     );
 }

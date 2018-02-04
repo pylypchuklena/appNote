@@ -19,17 +19,17 @@ export class NotesComponent extends React.Component<INoteContainer>{
         if (this.props.note) {
             return (
                 <div className="note--container">
-                    <NoteContent selectedItem={this.props.note} 
-                    updateNote={this.props.updateNote} />
+                    <NoteContent selectedItem={this.props.note}
+                        updateNote={this.props.updateNote} />
                 </div>
             )
         }
         else
             return (
                 <Link to={'/newNote'}>
-                <div className="note--EmptyContainer">
-                    <span className="fa fa-pencil"></span>
-                </div>
+                    <div className="note--EmptyContainer">
+                        <span className="fa fa-pencil"></span>
+                    </div>
                 </Link>
             )
     }

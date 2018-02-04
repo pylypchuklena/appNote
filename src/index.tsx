@@ -29,7 +29,6 @@ store.subscribe(()=>{
         saveState(store.getState(),SourceTypes.LOCALSTORAGE);
         else
         firebaseRef.database().ref("state").set(store.getState());
-        //saveState(store.getState(),SourceTypes.FIREBASE);
 })
 
 ReactDom.render(

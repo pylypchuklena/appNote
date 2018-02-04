@@ -10,10 +10,10 @@ export class MainContainer extends React.Component<any, any>{
     render() {
         return (
             <div className="row">
-                <div className="col-md-3 col-sm-4 no-pdng">
+                <div className="col-sm-4 no-pdng-r">
                         <NotesContainer/>
                 </div>
-                <div className="col-md-7 col-sm-5 no-pdng-l ">
+                <div className="col-sm-8 no-pdng-l ">
                     <div className="activeNoteSection">
                         <ActiveNoteContainer/>
                         <CommentsContainer/>

@@ -19,10 +19,10 @@ export class NewNoteComponent extends React.Component<IProps, State>{
         super(props);
 
         this.state = { titleValid: false, content: '', title: '' ,isRedirect : false};
-
         this.handleTitle = this.handleTitle.bind(this);
         this.handleContent = this.handleContent.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.redirectToMain= this.redirectToMain.bind(this);
     }
 
     validateTitle(str: string): boolean {
@@ -50,8 +50,11 @@ export class NewNoteComponent extends React.Component<IProps, State>{
             newNote.name = this.state.title;
             newNote.content = this.state.content;
             this.props.onAddNote(newNote);
-            this.setState({ ...this.state, isRedirect:true});
+            this.redirectToMain();
         }
+    }
+    redirectToMain(){
+        this.setState({ ...this.state, isRedirect:true});
     }
 
     render() {
@@ -68,7 +71,7 @@ export class NewNoteComponent extends React.Component<IProps, State>{
                     <div className="newComment__inputs">
                         <div className="form-group">
                             <label htmlFor="newCommentName"  >Title:</label>
-                            <input id="newCommentName" placeholder="Title"
+                            <input id="newCommentName" 
                                 onChange={this.handleTitle}
                                 value={this.state.title}
                                 type="text"
@@ -84,8 +87,10 @@ export class NewNoteComponent extends React.Component<IProps, State>{
                         </div>
 
                     </div>
-                    <button type="submit"
-                        className="btn btn-sm btn-primary  mr-sm-2">Add note</button>
+                    <button type="submit" 
+                        className="btn btn-md btn-secondary  mr-sm-2">Add note</button>
+                    <button onClick={this.redirectToMain} 
+                        className="btn btn-md btn-outline-secondary mr-sm-2">Cancel</button>
                 </form>
             </div>
         );

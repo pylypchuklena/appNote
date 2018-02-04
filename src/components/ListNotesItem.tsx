@@ -15,9 +15,11 @@ export class ListNotesItem extends React.Component<itemProps>{
         return (
             <li className={"notes-list__item flex-column " + (this.props.item.isSelected ? ' active' : '')}
                 onClick={() => { this.props.onSelectionChanged(this.props.item.id) }}>
-                <div className="notes-list__item__delete">
+                <div className="notes-list__item__delete"
+                    onClick={(e) => { this.props.deleteNote(this.props.item.id); e.preventDefault(); e.stopPropagation(); }}
+                >
                     <span className="fa fa-trash-o"
-                        onClick={(e) => { this.props.deleteNote(this.props.item.id); e.preventDefault(); e.stopPropagation(); }}></span>
+                        ></span>
                 </div>
                 <div className="notes-list__item__header">
                     <span className="comment__author">{this.props.item.name}</span>

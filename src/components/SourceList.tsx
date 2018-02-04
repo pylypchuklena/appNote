@@ -16,7 +16,7 @@ export class SourceList extends React.Component<Props, State>{
         super(props);
         this.state = { isRedirect: false };
 
-        
+
         this.navigateBack = this.navigateBack.bind(this);
     }
 
@@ -35,18 +35,25 @@ export class SourceList extends React.Component<Props, State>{
             )
 
         return (
-            <div>
-                <ul className="nav">
-                    <li className={"nav-item nav-item--btn " + (this.props.selectStorage == SourceTypes.LOCALSTORAGE ? "active" : "")}
+            <div className="flex-col option">
+                <h2 className="option__title ">Select store provider :</h2>
+                <div className="form-check option__input">
+                    <label htmlFor="radios1"  className=" flex-center " 
                         onClick={() => { this.onSelect(SourceTypes.LOCALSTORAGE) }}>
+                        <input type="radio" id="radios1" checked={this.props.selectStorage == SourceTypes.LOCALSTORAGE }/>
                         < a className="nav-link" href="#">LocalStorage</a>
-                    </li>
-                    <li className={"nav-item nav-item--btn " + (this.props.selectStorage == SourceTypes.FIREBASE ? "active" : "")}
+                    </label>
+                </div>
+                <div className="form-check option__input">  
+                    <label htmlFor="radios2" className=" flex-center " 
                         onClick={() => { this.onSelect(SourceTypes.FIREBASE) }}>
+                        <input type="radio" id="radios2" checked={this.props.selectStorage == SourceTypes.FIREBASE }/>  
                         <a className="nav-link" href="#">FireBase</a>
-                    </li>
-                </ul>
-                <button onClick={this.navigateBack} />
+                    </label>
+                </div>
+                <div className="wrapButton">
+                    <button onClick={this.navigateBack} className="btn btn-md btn-secondary ">Apply</button>
+                </div>
             </div>
         );
     }

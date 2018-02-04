@@ -60,30 +60,32 @@ export class NoteNewComment extends React.Component<Props, State>{
     render() {
         return (
             <div className="newComment newComent-wrap">
-                <h2 className="newComment__header">Add comment</h2>
-                <form action="" className="newComment__form"
+                <form className="newComment__form"
                     onSubmit={this.submitForm}>
                     <div className="newComment__inputs">
                         <div className="form-group">
                             <label htmlFor="newCommentName"  >Author:</label>
-                            <input id="newCommentName" placeholder="Author"
+                            <input id="newCommentName"
                                 onChange={this.handleAuthor}
                                 value={this.state.valueAuthor}
                                 type="text"
                                 className={"form-control newComment__input " +
                                     (this.state.authorValid ? 'isValid' : 'inValid')} />
+                                    <small className={"form-text text-muted " + (this.state.authorValid ? "hide" :"Show")}>* Name and Surname </small>
                         </div>
                         <div className="form-group">
                             <label htmlFor="newCommentContent" >Content:</label>
                             <textarea required id="newCommentContent"
                                 value={this.state.valueComment}
                                 onChange={this.handleContent}
-                                className="form-control newComment__input"></textarea>
+                                className={"form-control newComment__input " +
+                                (this.state.authorValid ? 'isValid' : 'inValid')} ></textarea>
                         </div>
 
                     </div>
                     <button type="submit"
-                        className="btn btn-sm btn-primary  mr-sm-2">Add comment</button>
+                        className="btn btn-md btn-secondary mr-sm-2">Add comment</button>
+                    
                 </form>
             </div>
         );
