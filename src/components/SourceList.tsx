@@ -16,8 +16,6 @@ export class SourceList extends React.Component<Props, State>{
     constructor(props: Props) {
         super(props);
         this.state = { isRedirect: false, isChecked: false };
-
-        // this.isChecked = this.isChecked.bind(this);
         this.navigateBack = this.navigateBack.bind(this);
     }
 
@@ -28,11 +26,7 @@ export class SourceList extends React.Component<Props, State>{
     navigateBack(e: any) {
         this.setState({ isRedirect: true });
     }
-    // isChecked(e:any){
-    //     console.log(e)
-    //     this.setState({ isChecked: true});
-    // }
-
+   
     render() {
         if (this.state.isRedirect)
             return (
@@ -43,25 +37,19 @@ export class SourceList extends React.Component<Props, State>{
             <div className="flex-col option">
                 <h2 className="option__title ">Select store provider :</h2>
                 <div className="form-check option__input">
-                    <label htmlFor="radios1"  className=" flex-center " 
-                        onClick={() => { this.onSelect(SourceTypes.LOCALSTORAGE) }}>
-                        <input type="radio" id="radios1" 
-                        // onChange={(e)=> this.isChecked(e.target.checked)}
-                        onChange={()=>{}}
-                        checked={this.props.selectStorage == SourceTypes.LOCALSTORAGE }
-                        />
-                        < a className="nav-link" href="#">LocalStorage</a>
+                    <label htmlFor="radios1"  className=" flex-center ">
+                        <input type="radio" id="radios1"
+                        onChange={(e)=> {if (e.target.checked) this.onSelect(SourceTypes.LOCALSTORAGE)}}
+                        checked={this.props.selectStorage == SourceTypes.LOCALSTORAGE }/>
+                        <label htmlFor={'radios1'}>LocalStorage</label>
                     </label>
                 </div>
                 <div className="form-check option__input">  
-                    <label htmlFor="radios2" className=" flex-center " 
-                        onClick={() => { this.onSelect(SourceTypes.FIREBASE) }}>
+                    <label htmlFor="radios2" className=" flex-center " >
                         <input type="radio" id="radios2"
-                        //  onChange={(e)=> this.isChecked(e.target.checked)}
-                        onChange={()=>{}}
-                        checked={this.props.selectStorage == SourceTypes.FIREBASE }
-                        />  
-                        <a className="nav-link" href="#">FireBase</a>
+                        onChange={(e)=> {if (e.target.checked) this.onSelect(SourceTypes.FIREBASE)}}
+                        checked={this.props.selectStorage == SourceTypes.FIREBASE }/>  
+                        <label htmlFor={'radios2'}>FireBase</label>
                     </label>
                 </div>
                 <div className="wrapButton">
