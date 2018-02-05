@@ -9,14 +9,15 @@ export interface Props {
 
 export interface State {
     isRedirect: boolean;
+    isChecked: boolean;
 }
 
 export class SourceList extends React.Component<Props, State>{
     constructor(props: Props) {
         super(props);
-        this.state = { isRedirect: false };
+        this.state = { isRedirect: false, isChecked: false };
 
-
+        // this.isChecked = this.isChecked.bind(this);
         this.navigateBack = this.navigateBack.bind(this);
     }
 
@@ -27,6 +28,10 @@ export class SourceList extends React.Component<Props, State>{
     navigateBack(e: any) {
         this.setState({ isRedirect: true });
     }
+    // isChecked(e:any){
+    //     console.log(e)
+    //     this.setState({ isChecked: true});
+    // }
 
     render() {
         if (this.state.isRedirect)
@@ -40,14 +45,22 @@ export class SourceList extends React.Component<Props, State>{
                 <div className="form-check option__input">
                     <label htmlFor="radios1"  className=" flex-center " 
                         onClick={() => { this.onSelect(SourceTypes.LOCALSTORAGE) }}>
-                        <input type="radio" id="radios1" checked={this.props.selectStorage == SourceTypes.LOCALSTORAGE }/>
+                        <input type="radio" id="radios1" 
+                        // onChange={(e)=> this.isChecked(e.target.checked)}
+                        onChange={()=>{}}
+                        checked={this.props.selectStorage == SourceTypes.LOCALSTORAGE }
+                        />
                         < a className="nav-link" href="#">LocalStorage</a>
                     </label>
                 </div>
                 <div className="form-check option__input">  
                     <label htmlFor="radios2" className=" flex-center " 
                         onClick={() => { this.onSelect(SourceTypes.FIREBASE) }}>
-                        <input type="radio" id="radios2" checked={this.props.selectStorage == SourceTypes.FIREBASE }/>  
+                        <input type="radio" id="radios2"
+                        //  onChange={(e)=> this.isChecked(e.target.checked)}
+                        onChange={()=>{}}
+                        checked={this.props.selectStorage == SourceTypes.FIREBASE }
+                        />  
                         <a className="nav-link" href="#">FireBase</a>
                     </label>
                 </div>

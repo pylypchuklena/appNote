@@ -151,16 +151,18 @@ ul{
 .comment__list .comment:nth-child(odd){
     background-color: #f2f2f2f2;
 }
-.newComment__inputs .form-group label{
+.form__inputs .form-group label{
     min-width: 60px;
 }
-textarea.newComment__input{
+.newNote__textarea{
     min-height: 250px;
+    resize: none;
 }
-.newComment__header{
+.form__header{
     padding: 10px 10px 20px;
+    background: rgba(230, 230, 230, 0.5);
 }
-.newComment{
+.form{
     padding: 10px ;
     background: rgba(230, 230, 230, 0.5);
 }
@@ -289,7 +291,7 @@ a{color: #333}
     padding: 15px;
 }
 .option__input input{
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 .fa-pencil:before{
     font-size: 28px;

@@ -59,17 +59,17 @@ export class NoteNewComment extends React.Component<Props, State>{
 
     render() {
         return (
-            <div className="newComment newComent-wrap">
-                <form className="newComment__form"
+            <div className="newComment newComment-wrap">
+                <form className="form"
                     onSubmit={this.submitForm}>
-                    <div className="newComment__inputs">
+                    <div className="form__inputs">
                         <div className="form-group">
                             <label htmlFor="newCommentName"  >Author:</label>
                             <input id="newCommentName"
                                 onChange={this.handleAuthor}
                                 value={this.state.valueAuthor}
                                 type="text"
-                                className={"form-control newComment__input " +
+                                className={"form-control form__input " +
                                     (this.state.authorValid ? 'isValid' : 'inValid')} />
                                     <small className={"form-text text-muted " + (this.state.authorValid ? "hide" :"Show")}>* Name and Surname </small>
                         </div>
@@ -78,7 +78,7 @@ export class NoteNewComment extends React.Component<Props, State>{
                             <textarea required id="newCommentContent"
                                 value={this.state.valueComment}
                                 onChange={this.handleContent}
-                                className={"form-control newComment__input " +
+                                className={"form-control form__input " +
                                 (this.state.authorValid ? 'isValid' : 'inValid')} ></textarea>
                         </div>
 

@@ -64,26 +64,26 @@ export class NewNoteComponent extends React.Component<IProps, State>{
         )
 
         return (
-            <div className="newComment newComent-wrap">
-                <h2 className="newComment__header">Add note</h2>
-                <form action="" className="newComment__form"
+            <div className="newNote">
+                <h2 className="form__header">Add note</h2>
+                <form className="form"
                     onSubmit={this.submitForm}>
-                    <div className="newComment__inputs">
+                    <div className="form__inputs">
                         <div className="form-group">
-                            <label htmlFor="newCommentName"  >Title:</label>
-                            <input id="newCommentName" 
+                            <label htmlFor="newNoteName"  >Title:</label>
+                            <input id="newNoteName" 
                                 onChange={this.handleTitle}
                                 value={this.state.title}
                                 type="text"
-                                className={"form-control newComment__input " +
+                                className={"form-control form__input " +
                                     (this.state.titleValid ? 'isValid' : 'inValid')} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="newCommentContent" >Content:</label>
-                            <textarea required id="newCommentContent"
+                            <label htmlFor="newNoteContent" >Content:</label>
+                            <textarea required id="newNoteContent"
                                 value={this.state.content}
                                 onChange={this.handleContent}
-                                className="form-control newComment__input"></textarea>
+                                className="form-control form__input newNote__textarea"></textarea>
                         </div>
 
                     </div>
