@@ -36,21 +36,17 @@ export class SourceList extends React.Component<Props, State>{
         return (
             <div className="flex-col option">
                 <h2 className="option__title ">Select store provider :</h2>
-                <div className="form-check option__input">
-                    <label htmlFor="radios1"  className=" flex-center ">
+                <div className="form-check option__input flex-center ">
                         <input type="radio" id="radios1"
                         onChange={(e)=> {if (e.target.checked) this.onSelect(SourceTypes.LOCALSTORAGE)}}
                         checked={this.props.selectStorage == SourceTypes.LOCALSTORAGE }/>
                         <label htmlFor={'radios1'}>LocalStorage</label>
-                    </label>
                 </div>
-                <div className="form-check option__input">  
-                    <label htmlFor="radios2" className=" flex-center " >
+                <div className="form-check option__input flex-center ">  
                         <input type="radio" id="radios2"
                         onChange={(e)=> {if (e.target.checked) this.onSelect(SourceTypes.FIREBASE)}}
                         checked={this.props.selectStorage == SourceTypes.FIREBASE }/>  
                         <label htmlFor={'radios2'}>FireBase</label>
-                    </label>
                 </div>
                 <div className="wrapButton">
                     <button onClick={this.navigateBack} className="btn btn-md btn-secondary ">Apply</button>

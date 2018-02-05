@@ -45504,16 +45504,14 @@ var SourceList = /** @class */ (function (_super) {
             return (React.createElement(react_router_1.Redirect, { to: '/' }));
         return (React.createElement("div", { className: "flex-col option" },
             React.createElement("h2", { className: "option__title " }, "Select store provider :"),
-            React.createElement("div", { className: "form-check option__input" },
-                React.createElement("label", { htmlFor: "radios1", className: " flex-center " },
-                    React.createElement("input", { type: "radio", id: "radios1", onChange: function (e) { if (e.target.checked)
-                            _this.onSelect(NoteModel_1.SourceTypes.LOCALSTORAGE); }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.LOCALSTORAGE }),
-                    React.createElement("label", { htmlFor: 'radios1' }, "LocalStorage"))),
-            React.createElement("div", { className: "form-check option__input" },
-                React.createElement("label", { htmlFor: "radios2", className: " flex-center " },
-                    React.createElement("input", { type: "radio", id: "radios2", onChange: function (e) { if (e.target.checked)
-                            _this.onSelect(NoteModel_1.SourceTypes.FIREBASE); }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.FIREBASE }),
-                    React.createElement("label", { htmlFor: 'radios2' }, "FireBase"))),
+            React.createElement("div", { className: "form-check option__input flex-center " },
+                React.createElement("input", { type: "radio", id: "radios1", onChange: function (e) { if (e.target.checked)
+                        _this.onSelect(NoteModel_1.SourceTypes.LOCALSTORAGE); }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.LOCALSTORAGE }),
+                React.createElement("label", { htmlFor: 'radios1' }, "LocalStorage")),
+            React.createElement("div", { className: "form-check option__input flex-center " },
+                React.createElement("input", { type: "radio", id: "radios2", onChange: function (e) { if (e.target.checked)
+                        _this.onSelect(NoteModel_1.SourceTypes.FIREBASE); }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.FIREBASE }),
+                React.createElement("label", { htmlFor: 'radios2' }, "FireBase")),
             React.createElement("div", { className: "wrapButton" },
                 React.createElement("button", { onClick: this.navigateBack, className: "btn btn-md btn-secondary " }, "Apply"))));
     };
