@@ -38536,7 +38536,7 @@ module.exports.makeKey = makeKey
 /* 298 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["elliptic@6.4.0","F:\\REACK\\appNote"]],"_from":"elliptic@6.4.0","_id":"elliptic@6.4.0","_inBundle":false,"_integrity":"sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.0","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.0","saveSpec":null,"fetchSpec":"6.4.0"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz","_spec":"6.4.0","_where":"F:\\REACK\\appNote","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.0"}
+module.exports = {"_args":[["elliptic@6.4.0","/Users/andriypylypchuk/appNote"]],"_from":"elliptic@6.4.0","_id":"elliptic@6.4.0","_inBundle":false,"_integrity":"sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.0","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.0","saveSpec":null,"fetchSpec":"6.4.0"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz","_spec":"6.4.0","_where":"/Users/andriypylypchuk/appNote","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.0"}
 
 /***/ }),
 /* 299 */
@@ -45489,7 +45489,6 @@ var SourceList = /** @class */ (function (_super) {
     function SourceList(props) {
         var _this = _super.call(this, props) || this;
         _this.state = { isRedirect: false, isChecked: false };
-        // this.isChecked = this.isChecked.bind(this);
         _this.navigateBack = _this.navigateBack.bind(_this);
         return _this;
     }
@@ -45499,10 +45498,6 @@ var SourceList = /** @class */ (function (_super) {
     SourceList.prototype.navigateBack = function (e) {
         this.setState({ isRedirect: true });
     };
-    // isChecked(e:any){
-    //     console.log(e)
-    //     this.setState({ isChecked: true});
-    // }
     SourceList.prototype.render = function () {
         var _this = this;
         if (this.state.isRedirect)
@@ -45510,17 +45505,15 @@ var SourceList = /** @class */ (function (_super) {
         return (React.createElement("div", { className: "flex-col option" },
             React.createElement("h2", { className: "option__title " }, "Select store provider :"),
             React.createElement("div", { className: "form-check option__input" },
-                React.createElement("label", { htmlFor: "radios1", className: " flex-center ", onClick: function () { _this.onSelect(NoteModel_1.SourceTypes.LOCALSTORAGE); } },
-                    React.createElement("input", { type: "radio", id: "radios1", 
-                        // onChange={(e)=> this.isChecked(e.target.checked)}
-                        onChange: function () { }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.LOCALSTORAGE }),
-                    React.createElement("a", { className: "nav-link", href: "#" }, "LocalStorage"))),
+                React.createElement("label", { htmlFor: "radios1", className: " flex-center " },
+                    React.createElement("input", { type: "radio", id: "radios1", onChange: function (e) { if (e.target.checked)
+                            _this.onSelect(NoteModel_1.SourceTypes.LOCALSTORAGE); }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.LOCALSTORAGE }),
+                    React.createElement("label", { htmlFor: 'radios1' }, "LocalStorage"))),
             React.createElement("div", { className: "form-check option__input" },
-                React.createElement("label", { htmlFor: "radios2", className: " flex-center ", onClick: function () { _this.onSelect(NoteModel_1.SourceTypes.FIREBASE); } },
-                    React.createElement("input", { type: "radio", id: "radios2", 
-                        //  onChange={(e)=> this.isChecked(e.target.checked)}
-                        onChange: function () { }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.FIREBASE }),
-                    React.createElement("a", { className: "nav-link", href: "#" }, "FireBase"))),
+                React.createElement("label", { htmlFor: "radios2", className: " flex-center " },
+                    React.createElement("input", { type: "radio", id: "radios2", onChange: function (e) { if (e.target.checked)
+                            _this.onSelect(NoteModel_1.SourceTypes.FIREBASE); }, checked: this.props.selectStorage == NoteModel_1.SourceTypes.FIREBASE }),
+                    React.createElement("label", { htmlFor: 'radios2' }, "FireBase"))),
             React.createElement("div", { className: "wrapButton" },
                 React.createElement("button", { onClick: this.navigateBack, className: "btn btn-md btn-secondary " }, "Apply"))));
     };
